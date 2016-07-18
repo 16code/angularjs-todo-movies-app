@@ -19,15 +19,13 @@
                     </a>
                     <ul ng-if="navs.childs" class="nav nav-sub dk">
                         <li ui-sref-active="active"
-                            ng-repeat="sub in navs.childs"
-                            ng-class="{active: sub.includeParma && sub.includeParma === $root.stateCurrentParma }">
+                            ng-repeat="sub in navs.childs">
                             <a ui-sref="{{sub.uri}}">
                                 <span>{{sub.name}}</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="line dk" ng-if="!$last"></li>
             </ul>
         </nav>
     </div>

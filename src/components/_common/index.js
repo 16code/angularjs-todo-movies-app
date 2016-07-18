@@ -1,11 +1,14 @@
 import RouterHelperProvider from '../services/router-helper.provider';
 import LoginResolveService from '../services/user-resolve.service';
 import MoviesService from '../services/movies.service';
+import TvService from '../services/tvs.service';
 import Base64Unicode from '../services/base64code.service';
 import ScrollEventService from '../services/scroll-coord-event.service';
 import HttpInterceptor from '../services/http-interceptor.service';
 import ErrorHandlerService from '../services/error-handler.service';
 import ErrorMessagesService from '../services/error-messages.service';
+// filter
+import filter from '../filter';
 // components
 import loadingBar from '../loading-bar';
 import uiButterbar from '../ui-butterbar';
@@ -25,12 +28,14 @@ export default angular.module('app.common',
         uiButterbar.name,
         imgLoad.name,
         breadcrumb.name,
-        notification.name
+        notification.name,
+        filter.name
     ])
     .service('ErrorHandler', ErrorHandlerService)
     .service('ErrorMessage', ErrorMessagesService)
     .service('LoginResolve', LoginResolveService)
     .service('MoviesApi', MoviesService)
+    .service('TvApi', TvService)
     .service('Base64code', Base64Unicode)
     .service('ScrollEvent', ScrollEventService)
     .factory('HttpInterceptor', HttpInterceptor)

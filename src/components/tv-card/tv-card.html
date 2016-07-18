@@ -1,0 +1,17 @@
+<div class="tv">
+    <div class="thumbnail lazyimg">
+        <a href="//www.themoviedb.org/tv/{{vm.tv.id}}" target="_blank">
+            <img imgload="{{$root.image_uri}}/w342{{vm.tv.poster_path}}">
+        </a>
+    </div>
+    <div class="overview">
+        <h5 class="name"><a href="//www.themoviedb.org/tv/{{vm.tv.id}}" target="_blank">{{vm.tv.name}}</a></h5>
+        <span class="vote">
+            <i class="icons icon-star"></i>
+            <small class="number">{{vm.tv.vote_average | voteFilter}}</small>
+        </span>
+        <p class="genre">{{vm.tv.genre_ids | parseGenre}}</p>
+        <p ng-if="vm.tv.overview">{{vm.tv.overview | cutText: 260}}</p>
+        <p ng-if="!vm.tv.overview">没有中文的剧情简介，请帮助添加到数据库。</p>
+    </div>
+</div>

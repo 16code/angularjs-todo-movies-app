@@ -3,7 +3,7 @@ class SidebarController {
         this.opendItem = null;
         this.navigations = [
             {
-                name: '仪表盘',
+                name: '首页',
                 icon: 'speedometer',
                 uri: 'root.layout.home'
             },
@@ -16,25 +16,38 @@ class SidebarController {
                     {
                         name: '院线热播',
                         icon: 'fire',
-                        uri: 'root.layout.movies({type: "now_playing", page: 1})',
-                        includeParma: 'now_playing'
+                        uri: 'root.layout.movies.now_playing'
                     },
                     {
                         name: '即将上映',
                         icon: 'calendar',
-                        uri: 'root.layout.movies({type: "upcoming", page: 1})',
-                        includeParma: 'upcoming'
+                        uri: 'root.layout.movies.upcoming'
                     },
                     {
-                        name: '所有电影',
+                        name: '高分电影',
                         icon: 'film',
-                        uri: 'root.layout.movies({type: "popular", page: 1})',
-                        includeParma: 'popular'
+                        uri: 'root.layout.movies.popular'
                     },
                     {
                         name: '排行榜',
                         icon: 'trophy',
                         uri: 'root.layout.movies.billboard'
+                    }
+                ]
+            },
+            {
+                name: '电视',
+                icon: 'social-youtube',
+                uri: 'root.layout.tv',
+                includeParma: 'root.layout.tv.*',
+                childs: [
+                    {
+                        name: '今日播出',
+                        uri: 'root.layout.tv.today'
+                    },
+                    {
+                        name: '热门剧集',
+                        uri: 'root.layout.tv.popular'
                     }
                 ]
             },

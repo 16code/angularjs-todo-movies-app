@@ -3,7 +3,7 @@ function HttpInterceptor($q, API_KEY) {
     return {
         request(config) {
             if (angular.isObject(config)) {
-                config.timeout = 5000;
+                config.timeout = 10000;
                 config.params = config.params || {};
                 const defaultLang = config.params.language || 'zh';
                 config.params.api_key = API_KEY;
@@ -24,7 +24,6 @@ function HttpInterceptor($q, API_KEY) {
             // do something on error
             rejection = rejection || {};
             const statusCode = Number(rejection.status);
-            console.log(statusCode);
             switch (statusCode) {
                 case 401:
                     rejection.code = 'Required_Login';

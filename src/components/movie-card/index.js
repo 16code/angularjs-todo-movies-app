@@ -15,18 +15,4 @@ const MovieCardComponent = {
 };
 
 export default angular.module('app.components.movieCard', [])
-    .filter('parseGenre', () => {
-        const originGenres = require('./origin-genres').default;
-        return (genres) => {
-            const result = [];
-            for (const genre of genres) {
-                originGenres.forEach((origin) => {
-                    if (origin.id === genre) {
-                        result.push(origin.name);
-                    }
-                });
-            }
-            return result.slice(0, 3).join(', ');
-        };
-    })
     .component('movieCard', MovieCardComponent);

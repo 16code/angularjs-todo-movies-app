@@ -13,6 +13,7 @@ import homeRouter from './pages/home/home.router';
 import moviesRouter from './pages/movies/movies.router';
 import billboardRouter from './pages/billboard/billboard.router';
 import moviesProfileRouter from './pages/movie-profile/movie-profile.router';
+import tvRouter from './pages/tv/tv.router';
 
 // 模块
 const modules = [
@@ -23,6 +24,7 @@ const modules = [
     layoutModule.name,
     homeRouter.name,
     moviesRouter.name,
+    tvRouter.name,
     billboardRouter.name,
     moviesProfileRouter.name
 ];

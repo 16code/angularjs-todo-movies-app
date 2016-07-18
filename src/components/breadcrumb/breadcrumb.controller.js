@@ -15,10 +15,6 @@ class BreadcrumbController {
                 link: name,
                 text: stateConfig.data.title
             };
-            // 特别路由
-            if (name === 'root.layout.movies') {
-                breadcrumb.link = 'root.layout.movies({page:1, type:"popular"})';
-            }
             this.breadcrumbs.push(breadcrumb);
         });
         const length = this.breadcrumbs.length;
