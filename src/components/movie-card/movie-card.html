@@ -12,7 +12,7 @@
         <p class="genre">{{vm.movie.genre_ids | parseGenre}}</p>
         <p class="star">
             <i class="icons icon-star"></i>
-            <span>{{vm.movie.vote_average | voteFilter}}</span>
+            <span class="number">{{vm.movie.vote_average | voteFilter}}</span>
         </p>
     </div>
     <ng-transclude></ng-transclude>
