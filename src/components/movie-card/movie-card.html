@@ -1,0 +1,19 @@
+<div class="movie">
+    <div class="thumbnail lazyimg">
+        <img imgload="{{$root.image_uri}}/w342{{vm.movie.poster_path}}">
+        <p class="play flex-middle-center">
+            <a ui-sref="root.layout.movies.movieProfile({id: vm.movie.id, name: vm.movie.original_title})">
+                <i class="icons icon-control-play"></i>
+            </a>
+        </p>
+    </div>
+    <div class="meta">
+        <h5 class="name">{{vm.movie.title}}</h5>
+        <p class="genre">{{vm.movie.genre_ids | parseGenre}}</p>
+        <p class="star">
+            <i class="icons icon-star"></i>
+            <span>{{vm.movie.vote_average | voteFilter}}</span>
+        </p>
+    </div>
+    <ng-transclude></ng-transclude>
+</div>

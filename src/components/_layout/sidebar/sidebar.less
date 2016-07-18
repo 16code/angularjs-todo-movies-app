@@ -1,0 +1,91 @@
+.navi {
+    padding-top: 15px;
+    .nav li {
+        position: relative;
+        a {
+            display: flex;
+            align-items: center;
+            padding: 8px 20px;
+            width: 100%;
+            transition: background-color 0.2s ease-in-out 0s;
+            font-size: 1.2rem;
+            position: relative;
+            > i,
+            >span {
+                display: inline-block;
+            }
+            > i {
+                line-height: 1;
+                text-align: center;
+                font-size: 1.6rem;
+                line-height: 34px;
+                width: 34px;
+                height: 34px;
+                margin-left: -10px;
+                margin-top: -2px;
+            }
+        }
+        li a {
+            padding-left: 45px;
+            position: relative;
+            display: block;
+            font-weight: normal;
+            text-transform: none;
+            transition: background-color .2s ease-in-out 0s;
+        }
+    }
+    .nav-sub {
+        height: 0;
+        margin-left: -20px;
+        overflow: hidden;
+        opacity: 0;
+        transition: all .2s ease-in-out 0s;
+    }
+    li.active>.nav-sub {
+        height: auto!important;
+        margin-left: 0;
+        overflow: auto;
+        opacity: 1;
+    }
+    .arrow {
+        font-size: 1rem;
+        position: absolute;
+        right: 15px;
+        left: auto;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        line-height: 12px;
+        width: 12px;
+        height: 12px;
+        transform: scale(.8);
+        color: #5c798f;
+        transition: all .2s ease-in-out;
+    }
+    .active .arrow {
+        transform: scale(.8) rotate(90deg);
+    }
+}
+.bg-black .nav > li > a {
+    color: rgb(134, 159, 177);
+}
+.bg-black .nav > li > a:focus,
+.bg-black .nav > li > a:hover,
+.bg-black .nav > li.active > a:focus,
+.bg-black .nav > li.active > a:hover, {
+    color: #fff;
+    background-color: rgb(22, 35, 45);
+}
+.bg-black .nav > li.active > a {
+    color: #fff;
+    background-color: #131e26;
+}
+.bg-black .dk {
+    background-color: #131e26;
+}
+.bg-black .text-muted {
+    color: #5c798f!important;
+}
+.text-small {
+    font-size: 1rem;
+}

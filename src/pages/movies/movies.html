@@ -1,0 +1,16 @@
+<div class="page-title">
+    <h4>{{vm.title}}</h4>
+    <b class="badge badge-warning" ng-if="vm.totalResults">{{vm.totalResults}}</b>
+</div>
+<div class="root-wrapper">
+    <div class="movies-wrapper"
+        ng-show="vm.movies.length">
+        <movie-card ng-repeat="movie in vm.movies track by movie.id"
+            movie="movie"
+            class="movie-item"
+            ng-if="movie.poster_path">
+        </movie-card>
+    </div>
+    <loading-bar></loading-bar>
+</div>
+<pagination config="vm.paginationConfig" ng-if="vm.movies.length"></pagination>

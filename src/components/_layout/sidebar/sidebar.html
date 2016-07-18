@@ -1,0 +1,34 @@
+<div class="aside-wrap">
+    <div class="navi-wrap">
+        <nav class="navi">
+            <ul class="nav" ng-repeat="(key, navs) in vm.navigations track by $index">
+                <li ui-sref-active="active"
+                    ng-class="{active: $root.$state.includes(navs.includeParma) || vm.opendItem === $index }">
+                    <a ng-if="navs.childs" href
+                        ng-click="vm.toggleClass($index, $event);">
+                        <i class="icons icon-{{navs.icon}}"></i>
+                        <span>{{navs.name}}</span>
+                        <span class="arrow">
+                            <i class="icons icon-arrow-right"></i>
+                        </span>
+                    </a>
+                    <a ui-sref="{{navs.uri}}" ng-if="!navs.childs"
+                        ng-click="vm.toggleClass($index, $event);">
+                        <i class="icons icon-{{navs.icon}}"></i>
+                        <span>{{navs.name}}</span>
+                    </a>
+                    <ul ng-if="navs.childs" class="nav nav-sub dk">
+                        <li ui-sref-active="active"
+                            ng-repeat="sub in navs.childs"
+                            ng-class="{active: sub.includeParma && sub.includeParma === $root.stateCurrentParma }">
+                            <a ui-sref="{{sub.uri}}">
+                                <span>{{sub.name}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="line dk" ng-if="!$last"></li>
+            </ul>
+        </nav>
+    </div>
+</div>

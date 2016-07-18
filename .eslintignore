@@ -1,0 +1,5 @@
+./build
+./eslint
+./src/libs/*
+./node_modules
+./eslint

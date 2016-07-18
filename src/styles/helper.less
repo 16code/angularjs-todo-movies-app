@@ -1,0 +1,50 @@
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+// Perfect circle
+.img-circle {
+    border-radius: 50%; // set radius in percents
+}
+.box-shadow {
+    box-shadow: rgba(0, 0, 0, 0.0470588) 0px 2px 2px, rgba(0, 0, 0, 0.0470588) 0px 1px 0px;
+}
+.line {
+    width: 100%;
+    height: 2px;
+    margin: 10px 0;
+    overflow: hidden;
+    font-size: 0;
+}
+.no-margin {
+    margin: 0;
+}
+.padder {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.lazyimg {
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
+    background-position: center center;
+    background-image: url('../assets/loading.svg');
+}
+.pd20 {
+	padding: 20px;
+}
+.flex-middle-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.thumbnail {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: rgba(114, 102, 186, 0.11);
+    overflow: hidden;
+    &.loaded {
+        background-size: cover;
+    }
+}

@@ -1,0 +1,81 @@
+<breadcrumb></breadcrumb>
+<div class="page-title">
+    <h4>{{vm.movie.title}} ({{vm.movie.original_title}})</h4>
+</div>
+<div class="root-wrapper movie-animate">
+    <div class="movie-profile">
+        <div class="basic-info">
+            <div class="poster-box">
+                <div class="backdrop thumbnail">
+                    <img class="poster-background" ng-src="{{$root.image_uri}}/original{{vm.movie.backdrop_path}}">
+                </div>
+                <div class="overview">
+                    <div class="info">
+                        <h3 class="title">{{vm.movie.title}} ({{vm.movie.original_title}})</h3>
+                        <p>
+                            <span class="label">评分:</span>
+                            <span>{{vm.movie.vote_average}} </span>
+                        </p>
+                        <p>
+                            <span class="label">时长:</span>
+                            <span>{{vm.movie.runtime}} 分钟</span>
+                        </p>
+                        <p>
+                            <span class="label">发行时间: </span>
+                            <span>{{vm.movie.release_date}}</span>
+                        </p>
+                        <p ng-if="vm.movie.spoken_languages.name">
+                            <span class="label">语言:</span>
+                            <span>{{vm.movie.spoken_languages.name}}</span>
+                        </p>
+                        <p>
+                            <span class="label">类型:</span>
+                            <span ng-repeat="genre in vm.movie.genres">{{genre.name}} </span>
+                        </p>
+                        <p class="overview-text" ng-if="vm.movie.overview">剧情简介: {{vm.movie.overview}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="production-info bg-white-only">
+            <div class="casts-box bg-primary root-wrapper">
+                <h5 class="s-title">演员表</h5>
+                <ul class="casts flex-middle-center">
+                    <li ng-repeat="cast in vm.credits.cast.slice(0,10)" ng-if="cast.profile_path">
+                        <img ng-src="{{$root.image_uri}}/w264_and_h264_bestv2{{cast.profile_path}}" alt="{{cast.name}}"
+                           width="100" height="100"/>
+                        <span>{{cast.name}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="crews root-wrapper">
+                <h5 class="s-title">职员表</h5>
+                <ul>
+                    <li ng-repeat="crew in vm.credits.crew">{{crew.job}} -- <span>{{crew.name}}</span></li>
+                </ul>
+            </div>
+            <div class="companies root-wrapper">
+                <h5 class="s-title">出品公司</h5>
+                <ul>
+                    <li ng-repeat="compan in vm.movie.production_companies">{{compan.name}}</li>
+                </ul>
+            </div>
+            <div class="posters-images root-wrapper">
+                <h5 class="s-title">海报 (剧照)
+                    <b class="badge badge-warning" ng-if="vm.posters.length">{{vm.posters.length}}</b></h5>
+                <loading-bar infinite="true"></loading-bar>
+                <ul class="flex-middle-center">
+                    <li ng-repeat="poster in vm.posters.slice(0, 10)">
+                        <div class="thumbnail lazyimg">
+                            <img imgload="{{$root.image_uri}}/w533_and_h300_bestv2{{poster.file_path}}" alt="{{vm.movie.title}}">
+                        </div>
+                    </li>
+                </ul>
+                <div class="empty-list" ng-if="vm.posters.$resolved && !vm.posters.length">此影片暂时没有相关海报或剧照</div>
+                <div class="more-images" ng-if="vm.posters.length">
+                    <a href="#" class="btn btn-more">查看更多剧照</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

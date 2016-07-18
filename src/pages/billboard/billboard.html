@@ -1,0 +1,15 @@
+<div class="page-title">
+    <h4>电影排行榜</h4>
+    <b class="badge badge-warning" ng-if="vm.totalResults">{{vm.totalResults}}</b>
+</div>
+<div class="root-wrapper">
+    <div class="billboard-wrapper" id="billboard-wrapper">
+        <billboard-card ng-repeat="movie in vm.movies track by $index"
+            movie="movie"
+            index="{{$index}}"
+            class="item"
+            ng-if="movie.poster_path">
+        </billboard-card>
+    </div>
+    <loading-bar infinite="true"></loading-bar>
+</div>

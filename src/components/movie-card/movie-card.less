@@ -1,0 +1,138 @@
+.movies-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -10px;
+    margin-right: -10px;
+    .movie-item {
+        padding: 10px;
+        width: ~'calc(100%/10)';
+    }
+    @media screen and (max-width: 1440px) {
+        .movie-item {
+            width: ~'calc(100%/8)';
+        }
+    }
+    @media screen and (max-width: 1024px) {
+        .movie-item {
+            width: ~'calc(100%/5)';
+        }
+    }
+    @media screen and (max-width: 580px) {
+        .movie-item {
+            width: ~'calc(100%/2)';
+        }
+    }
+}
+.movie {
+    overflow: hidden;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    .thumbnail {
+        display: block;
+        width: 100%;
+        height: 158px;
+        border-radius: 5px;
+        box-shadow: 0 0 3px 1px #abb1cf;
+        position: relative;
+        color: #fff;
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+
+    }
+    @media screen and (max-width: 1920px) {
+        .thumbnail {
+            height: 198px;
+        }
+    }
+    @media screen and (max-width: 1366px) {
+        .thumbnail {
+            height: 188px;
+        }
+    }
+    @media screen and (max-width: 1024px) {
+        .thumbnail {
+            height: 200px;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .thumbnail {
+            height: 150px;
+        }
+    }
+    @media screen and (max-width: 580px) {
+        .thumbnail {
+            height: 190px;
+        }
+    }
+    .play {
+        border-radius: 5px;
+        transition: opacity .3s ease;
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        padding: 1rem;
+        overflow: auto;
+        background:radial-gradient(ellipse at center, rgba(0,0,0,0.09) 0%, rgba(0,0,0,0.18) 10%, rgba(53,55,87,1) 100%);
+        a {
+            position: relative;
+            font-size: 2.8rem;
+            line-height: 1;
+            color: rgb(220, 220, 220);
+            &::before {
+                border-radius: 50%;
+                content: '';
+                border: 2px solid;
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                left: -15px;
+                top: -12px;
+            }
+            &:hover {
+                color: #eec141;
+            }
+        }
+    }
+    &:hover .loaded {
+        .play {
+            opacity: 1;
+        }
+    }
+    .meta {
+        font-size: 1rem;
+        padding: 10px 0;
+        position: relative;
+        .name {
+            color: #333;
+            max-width: 90%;
+            font-size: 1.3rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .star {
+            position: absolute;
+            left: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .icon-star {
+            color: rgb(238, 193, 65);
+            font-size: 1.8rem;
+        }
+    }
+}

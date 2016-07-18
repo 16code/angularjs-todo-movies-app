@@ -1,0 +1,11 @@
+<ol class="breadcrumb">
+    <li class="home-item">
+        <a ui-sref="root.layout.home">首页</a>
+    </li>
+    <li ng-repeat="nav in vm.breadcrumbs"
+        class="breadcrumb-item">
+        <span class="arrow">&gt;</span>
+        <a ng-if="!$last" ui-sref="{{nav.link}}">{{nav.text}}</a>
+        <span ng-if="$last" class="last">{{nav.text}}</span>
+    </li>
+</ol>

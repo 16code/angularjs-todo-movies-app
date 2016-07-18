@@ -1,0 +1,42 @@
+<div class="root-wrapper" ng-show="vm.upComingMovies.length">
+    <div class="dashboard-session">
+        <div class="session-title">
+            <h5 class="name">即将上映</h5>
+            <a ui-sref="root.layout.movies({type: 'upcoming', page: 1})" class="more">更多...</a>
+        </div>
+        <div class="movies-wrapper">
+            <movie-card ng-repeat="movie in vm.upComingMovies track by movie.id"
+                movie="movie"
+                class="movie-item"
+                ng-if="movie.poster_path" />
+            </movie-card>
+        </div>
+    </div>
+    <div class="dashboard-session">
+        <div class="session-title">
+            <h5 class="name">院线热播</h5>
+            <a ui-sref="root.layout.movies({type: 'popular', page: 1})" class="more">更多...</a>
+        </div>
+        <div class="movies-wrapper">
+            <movie-card ng-repeat="movie in vm.popularMovies track by movie.id"
+                movie="movie"
+                class="movie-item"
+                ng-if="movie.poster_path" />
+            </movie-card>
+        </div>
+    </div>
+    <div class="dashboard-session">
+        <div class="session-title">
+            <h5 class="name">排行榜</h5>
+            <a ui-sref="root.layout.billboard" class="more">更多...</a>
+        </div>
+        <div class="movies-wrapper">
+            <movie-card ng-repeat="movie in vm.topRatedMovies track by movie.id"
+                movie="movie"
+                class="movie-item"
+                ng-if="movie.poster_path" />
+            </movie-card>
+        </div>
+    </div>
+</div>
+<loading-bar></loading-bar>

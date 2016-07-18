@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="thumbnail lazyimg">
+        <a ui-sref="root.layout.movies.movieProfile({id: vm.movie.id, name: vm.movie.original_title})">
+            <img imgload="{{$root.image_uri}}/w500{{vm.movie.poster_path}}" />
+        </a>
+    </div>
+    <div class="votes">
+        <div class="col vote-average">
+            <span>评分</span>
+            <div class="number text-info">{{vm.movie.vote_average | voteFilter}}</div>
+        </div>
+        <div class="col vote-count">
+            <span>投票人数</span>
+            <div class="number text-warning">{{vm.movie.vote_count}}</div>
+        </div>
+    </div>
+    <span class="rank-number">{{vm.rank + 1}}</span>
+    <div class="meta root-wrapper">
+        <h5 class="name">{{vm.movie.title}}</h5>
+    </div>
+</div>

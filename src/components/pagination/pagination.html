@@ -1,0 +1,18 @@
+<div class="pagination-box">
+    <ul class="pagination"
+        ng-show="pagination.config.totalItems > 0">
+        <li ng-class="{disabled: pagination.config.currentPage == 1}"
+            ng-click="pagination.prevPage()">
+            <span>&laquo;</span>
+        </li>
+        <li ng-repeat="item in pagination.pageList track by $index"
+            ng-class="{'current': item == pagination.config.currentPage, 'separate': item == '...'}"
+            ng-click="pagination.changeCurrentPage(item)">
+            <span>{{ item }}</span>
+        </li>
+        <li ng-class="{disabled: pagination.config.currentPage == pagination.config.numberOfPages}"
+            ng-click="pagination.nextPage()">
+            <span>&raquo;</span>
+        </li>
+    </ul>
+</div>
