@@ -1,9 +1,7 @@
 <div class="card">
-    <div class="thumbnail lazyimg">
-        <a ui-sref="root.layout.movies.movieProfile({id: vm.movie.id, name: vm.movie.original_title})">
-            <img imgload="{{$root.image_uri}}/w500{{vm.movie.poster_path}}" />
-        </a>
-    </div>
+    <a class="thumbnail lazyimg" ui-sref="root.layout.movies.movieProfile({id: vm.movie.id, name: vm.movie.original_title})">
+        <img imgload="{{$root.image_uri}}/w500{{vm.movie.poster_path}}" />
+    </a>
     <div class="votes">
         <div class="col vote-average">
             <span>评分</span>
