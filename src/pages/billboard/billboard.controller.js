@@ -42,6 +42,8 @@ class BillboardController {
             this[currentPage] = resp.page;
             this[currentPage]++;
             this[ajaxBusy] = false;
+        }, () => {
+            this[ajaxBusy] = false;
         });
     }
 }

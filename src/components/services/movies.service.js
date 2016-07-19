@@ -10,10 +10,12 @@ class MoviesSource {
         const api = this.$resource(`${this.API}/movie/:movie_type`, {}, {
             get: {cache: true}
         });
-        return this.$q((resolve) => {
+        return this.$q((resolve, reject) => {
             const promise = api.get(movieType).$promise;
-            promise.then((resp) => resolve(resp))
-            .catch(this[errorHandler]);
+            promise.then((resp) => resolve(resp), (err) => {
+                reject(err);
+                return this[errorHandler](err.code);
+            });
         });
     }
     sourceByOne(params) {
