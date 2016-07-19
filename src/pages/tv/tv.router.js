@@ -39,7 +39,7 @@ function getStates() {
                     }
                 },
                 data: {
-                    title: '电视',
+                    title: '热门剧集',
                     className: 'tv'
                 }
             }

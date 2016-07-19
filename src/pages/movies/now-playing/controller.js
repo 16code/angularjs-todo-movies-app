@@ -7,6 +7,8 @@ class PlayingController extends MoviesBaseController {
         Object.assign(this, {$q, $state, MoviesApi});
         this.movieType = 'now_playing';
         this.title = '院线热播';
+        this.description = `Get the list of movies playing that have been,
+            or are being released this week. This list refreshes every day.`;
         this.paginationConfig = {
             currentPage: $state.params.page,
             pageOnChange: () => {

@@ -10,7 +10,8 @@ class TvController {
                 this.$state.go($state.current, {page: this.paginationConfig.currentPage});
             }
         };
-        this.title = '电视';
+        this.title = '热门剧集';
+        this.description = 'Get the list of popular TV shows. This list refreshes every day.';
         this.activate();
     }
     activate() {

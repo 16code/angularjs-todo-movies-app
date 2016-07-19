@@ -11,6 +11,8 @@ class TvTodayController {
             }
         };
         this.title = '今日播出剧集';
+        this.description = `Get the list of TV shows that air today. Without a specified timezone,
+            this query defaults to EST (Eastern Time UTC-05:00).`;
         this.activate();
     }
     activate() {

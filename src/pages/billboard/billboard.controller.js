@@ -8,6 +8,8 @@ class BillboardController {
         this[currentPage] = false;
         this[ajaxBusy] = false;
         this[timer] = false;
+        this.description = `Get the list of top rated movies. By default, 
+            this list will only include movies that have 50 or more votes. This list refreshes every day.`;
         this.activate();
     }
     activate() {

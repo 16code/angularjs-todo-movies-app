@@ -7,6 +7,7 @@ class UpcomingController extends MoviesBaseController {
         Object.assign(this, {$q, $state, MoviesApi});
         this.movieType = 'upcoming';
         this.title = '即将上映';
+        this.description = 'Get the list of upcoming movies by release date. This list refreshes every day.';
         this.paginationConfig = {
             currentPage: $state.params.page,
             pageOnChange: () => {
