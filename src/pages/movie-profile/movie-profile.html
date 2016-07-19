@@ -38,6 +38,16 @@
             </div>
         </div>
         <div class="production-info bg-white-only">
+            <div class="keyword root-wrapper">
+                <h5 class="s-title">关键字</h5>
+                <ul>
+                    <li ng-repeat="keyword in vm.keywords track by $index">
+                        <a ui-sref="root.layout.search({name:keyword.name, id: keyword.id})">
+                            <span class="badge badge-purple">{{keyword.name}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <div class="casts-box bg-primary root-wrapper">
                 <h5 class="s-title">演员表</h5>
                 <ul class="casts flex-middle-center">
@@ -65,7 +75,7 @@
                     <b class="badge badge-warning" ng-if="vm.posters.length">{{vm.posters.length}}</b></h5>
                 <loading-bar infinite="true"></loading-bar>
                 <ul class="flex-middle-center">
-                    <li ng-repeat="poster in vm.posters.slice(0, 10)">
+                    <li ng-repeat="poster in vm.posters track by $index">
                         <div class="thumbnail lazyimg">
                             <img imgload="{{$root.image_uri}}/w533_and_h300_bestv2{{poster.file_path}}" alt="{{vm.movie.title}}">
                         </div>

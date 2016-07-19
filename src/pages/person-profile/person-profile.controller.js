@@ -1,8 +1,9 @@
 class PersonProfileController {
-    constructor($stateParams, personProfile, PersonApi) {
+    constructor($stateParams, personProfile, PersonApi, RouterHelper) {
         'ngInject';
         Object.assign(this, {$stateParams, personProfile, PersonApi});
         this.profile = personProfile;
+        RouterHelper.updateDocTitle(this.profile.name);
         this.activate();
     }
     activate() {

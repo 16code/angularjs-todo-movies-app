@@ -14,7 +14,18 @@ class MovieProfileController {
         this.activate();
     }
     activate() {
+        this.getMovieKeyWords();
         this.scrollEvent();
+    }
+    getMovieKeyWords() {
+        this.MoviesApi.$profile({id: this.movie.id, type: 'keywords'})
+            .then((resp) => {
+                this.keywords = resp.keywords;
+                this.keywords.$resolved = resp.$resolved;
+            }, (err) => {
+                console.log(err);
+                this.keywords.$resolved = true;
+            });
     }
     scrollEvent() {
         if (!this.scrollFunc) {
@@ -37,7 +48,7 @@ class MovieProfileController {
             .then((resp) => {
                 angular.element(this.$document[0]).unbind('scroll');
                 this.backdrops = resp.backdrops;
-                this.posters = resp.posters;
+                this.posters = resp.posters.slice(0, 10);
                 this.posters.$resolved = resp.$resolved;
             }, (err) => {
                 console.log(err);
