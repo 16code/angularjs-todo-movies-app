@@ -1,7 +1,7 @@
 class TvController {
-    constructor($rootScope, $q, $state, TvApi, RouterHelper) {
+    constructor($rootScope, $q, $state, TvApi) {
         'ngInject';
-        Object.assign(this, {$rootScope, $q, $state, TvApi, RouterHelper});
+        Object.assign(this, {$rootScope, $q, $state, TvApi});
         this.paginationConfig = {
             currentPage: this.$state.params.page || 1,
             itemsPerPage: 20,
