@@ -1,0 +1,14 @@
+<div class="page-title">
+    <h4>{{vm.title}}</h4>
+    <b class="badge badge-warning" ng-if="vm.totalResults">{{vm.totalResults}}</b>
+    <p><small class="text-muted">Get the list of popular people on The Movie Database. This list refreshes every day.</small></p>
+</div>
+<div class="root-wrapper">
+    <div class="person-wrapper">
+        <person-card class="person"
+            ng-repeat="person in vm.persons track by $index"
+            person="person"></person-card>
+    </div>
+    <loading-bar></loading-bar>
+</div>
+<pagination config="vm.paginationConfig" ng-if="vm.persons.length"></pagination>

@@ -1,6 +1,7 @@
 import RouterHelperProvider from '../services/router-helper.provider';
 import LoginResolveService from '../services/user-resolve.service';
 import MoviesService from '../services/movies.service';
+import PersonService from '../services/person.service';
 import TvService from '../services/tvs.service';
 import Base64Unicode from '../services/base64code.service';
 import ScrollEventService from '../services/scroll-coord-event.service';
@@ -35,6 +36,7 @@ export default angular.module('app.common',
     .service('ErrorMessage', ErrorMessagesService)
     .service('LoginResolve', LoginResolveService)
     .service('MoviesApi', MoviesService)
+    .service('PersonApi', PersonService)
     .service('TvApi', TvService)
     .service('Base64code', Base64Unicode)
     .service('ScrollEvent', ScrollEventService)

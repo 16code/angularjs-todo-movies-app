@@ -1,0 +1,29 @@
+<div class="inner-wrapper">
+    <div class="thumbnail-wrapper">
+        <figure class="thumbnail lazyimg">
+            <img imgload="{{$root.image_uri}}/w235_and_h235_bestv2{{vm.person.profile_path}}">
+        </figure>
+        <h5 class="name">{{vm.person.name}}</h5>
+    </div>
+    <div class="overview clearfix">
+        <div class="item">
+            <span class="name">popularity</span>
+            <span class="number">{{vm.person.popularity | voteFilter}}</span>
+        </div>
+        <div class="item">
+            <span class="name">release date</span>
+            <span class="number">{{vm.person.known_for[0].release_date}}</span>
+        </div>
+        <div class="item">
+            <span class="name">vote</span>
+            <span class="number">{{vm.person.known_for[0].vote_count}}</span>
+        </div>
+    </div>
+    <div class="overview-more flex-middle-center">
+        <div class="center-box">
+            <span>Do you want to know more</span>
+            <h4 class="name">{{vm.person.name}} ?</h4>
+            <a href="" class="btn btn-link">Learn more</a>
+        </div>
+    </div>
+</div>

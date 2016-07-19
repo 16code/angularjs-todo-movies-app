@@ -9,12 +9,16 @@ import ngAnimate from 'angular-animate';
 import 'oclazyload';
 // pages
 import layoutModule from './components/_layout';
+
 import homeRouter from './pages/home/home.router';
+
 import moviesRouter from './pages/movies/movies.router';
+import tvRouter from './pages/tv/tv.router';
+import personRouter from './pages/person/person.router';
+
+
 import billboardRouter from './pages/billboard/billboard.router';
 import moviesProfileRouter from './pages/movie-profile/movie-profile.router';
-import tvRouter from './pages/tv/tv.router';
-
 // 模块
 const modules = [
     uiRouter,
@@ -25,6 +29,7 @@ const modules = [
     homeRouter.name,
     moviesRouter.name,
     tvRouter.name,
+    personRouter.name,
     billboardRouter.name,
     moviesProfileRouter.name
 ];
