@@ -16,7 +16,27 @@ class PersonProfileController {
                 return new Date(b.release_date) - new Date(a.release_date);
             });
             this.movies = resp.cast.slice(0, 10);
+            this.timeLineMovies = this.groupMovies();
         });
+    }
+    groupMovies() {
+        const movieGroup = {};
+        const hasKey = Object.prototype.hasOwnProperty;
+        for (const movie of this.sortByDateMovies) {
+            const movieDate = new Date(movie.release_date);
+            const movieYear = movieDate.getFullYear();
+            let movieMonth = (movieDate.getMonth() + 1);
+            let movieDay = movieDate.getDate();
+            movieMonth = movieMonth < 10 ? `0${movieMonth}` : movieMonth;
+            movieDay = movieDay < 10 ? `0${movieDay}` : movieDay;
+            const parseDate = `${movieMonth}-${movieDay}`;
+            if (!hasKey.call(movieGroup, movieYear)) {
+                movieGroup[movieYear] = [];
+            }
+            movie.release_date = parseDate;
+            movieGroup[movieYear].push(movie);
+        }
+        return movieGroup;
     }
 }
 

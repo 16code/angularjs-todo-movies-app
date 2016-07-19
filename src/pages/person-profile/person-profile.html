@@ -66,14 +66,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="timeline">
-                    <h5 class="number">Timeline</h5>
-                    <ul>
-                        <li ng-repeat="movie in vm.sortByDateMovies track by movie.id"
-                            class="text-muted"
-                            ng-if="movie.release_date">
-                            <date>{{movie.release_date}}</date>
-                            <span><a class="text-info" ui-sref="root.layout.movies.movieProfile({id: movie.id, name: movie.original_title})">{{movie.title}}</a> as {{movie.original_title}}</span>
+                <div class="timeline-wrapper">
+                    <h5 class="number">时间轴</h5>
+                    <ul class="timeline">
+                        <li ng-repeat="(key, movies) in vm.timeLineMovies track by key"
+                            class="text-muted">
+                            <date class="key-date">{{key}}</date>
+                            <ul class="sub-line">
+                                <li ng-repeat="movie in movies track by $index"
+                                    class="text-muted"
+                                    ng-if="movie.release_date">
+                                    <date class="date badge">{{movie.release_date}}</date>
+                                    <span><a class="text-info" ui-sref="root.layout.movies.movieProfile({id: movie.id, name: movie.original_title})">{{movie.title}}</a> as {{movie.original_title}}</span>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

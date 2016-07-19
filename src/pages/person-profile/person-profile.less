@@ -163,61 +163,82 @@
             font-size: 1.4rem;
         }
     }
-    .timeline {
-        padding-left: .5rem;
+    .timeline-wrapper {
         border-top: 1px solid rgba(152, 166, 173, 0.33);
+        padding-left: 1.5rem;
         padding-top: 1.5rem;
         margin-top: 1.5rem;
+        @media screen and (max-width: 1024px) {
+            padding-left: 1.5rem;
+            padding-right: .15rem;
+        }
         h5 {
             color: #98a6ad;
+            display: block;
+            margin-bottom: 1rem;
+            margin-left: -1.5rem;
         }
-        ul {
+        ul.timeline {
             border-left: 2px solid #7266ba;
             padding-top: 1rem;
             padding-bottom: 1rem;
-            li {
+            display: flex;
+            flex-direction: column-reverse;
+            > li {
                 position: relative;
-                padding: .5rem 0;
-                padding-left: 2rem;
-                &::before,
-                &::after {
+                margin: 1rem 0;
+                &::before ,
+                .key-date {
+                    content: '';
                     position: absolute;
                     font-size: 0;
                     line-height: 0;
-                    content: '';
-                    top: 0;
-                    right: auto;
-                    bottom: 0;
-                    margin: auto;
+                    top: -3px;
                     display: inline-block;
+                    z-index: 3;
+                    -webkit-user-select:none;
+                    -moz-user-select:none;
+                    user-select:none;
                 }
                 &::before {
                     content: '';
                     background-color: #7266ba;
-                    left: -7px;
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 12px;
-                }
-                &::after {
-                    background-color: #fff;
-                    width: 6px;
-                    height: 6px;
-                    border-radius: 6px;
-                    left: -4px;
+                    left: -22px;
+                    width: 42px;
+                    height: 42px;
+                    border-radius: 50%;
                 }
                 a {
                     transition: all .3s linear;
+                    &:hover {
+                        color: #7266ba;
+                        text-decoration: underline;
+                    }
                 }
-                a:hover {
-                    color: #7266ba;
-                    text-decoration: underline;
+                .key-date {
+                    font-size: 1.4rem;
+                    font-weight: 300;
+                    color: #fff;
+                    width: 42px;
+                    height: 42px;
+                    line-height: 42px;
+                    text-align: center;
+                    left: -22px;
+                    padding: 0;
                 }
             }
         }
-        date {
-            font-weight: 300;
-            padding-right: 1rem;
+        .sub-line {
+            .date {
+                font-weight: 300;
+                margin-right: 1rem;
+                background-color: rgba(0, 0, 0, 0.24);
+                color: #fff;
+            }
+            li {
+                padding: .5rem 0;
+                padding-left: 3rem;
+            }
         }
     }
 }
