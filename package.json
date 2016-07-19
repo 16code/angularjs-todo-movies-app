@@ -1,7 +1,7 @@
 {
-  "name": "angular-webpack-es6-demo",
+  "name": "angular-todo-movies-app",
   "version": "1.0.0",
-  "description": "Angular Webpack ES6 Demo",
+  "description": "Angular Todo Movies App",
   "main": "src/index.js",
   "engines": {
     "node": ">=0.12.9",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/16code/AngularJs-uiRouter-Authorize-Demo.git"
+    "url": "https://16code@bitbucket.org/16code/todo-movies-app.git"
   },
   "keywords": [
     "Webpack",
@@ -27,10 +27,6 @@
   ],
   "author": "16code",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/16code/AngularJs-uiRouter-Authorize-Demo/issues"
-  },
-  "homepage": "https://github.com/16code/AngularJs-uiRouter-Authorize-Demo#readme",
   "files": [
     "src"
   ],

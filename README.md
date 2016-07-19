@@ -1,10 +1,10 @@
-# angular-webpack-es6-demo
-> Webpack + Angularjs + uiRouter + ES6 种子程序
+# Angular Todo Movies App
+> Webpack + Angularjs + uiRouter + ES6
 
 ## 安装安装
 
 ```bash
-git clone https://github.com/16code/AngularJs-uiRouter-Authorize-Demo.git myAngularApp
+git clone https://16code@bitbucket.org/16code/todo-movies-app.git myAngularApp
 cd myAngularApp
 npm install -g webpack eslint
 npm install
