@@ -23,7 +23,7 @@
         <div class="center-box">
             <span>Do you want to know more</span>
             <h4 class="name">{{vm.person.name}} ?</h4>
-            <a href="" class="btn btn-link">Learn more</a>
+            <a ui-sref="root.layout.person.profile({name:vm.person.name, id: vm.person.id})" class="btn btn-link">Learn more</a>
         </div>
     </div>
 </div>

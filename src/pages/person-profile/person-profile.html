@@ -1,0 +1,83 @@
+<breadcrumb></breadcrumb>
+<div class="page-title">
+    <h4>{{vm.movie.title}}</h4>
+</div>
+<div class="root-wrapper">
+<style type="text/css">
+.person-content:before {
+    background-image: url('{{$root.image_uri}}/original/{{vm.profile.profile_path}}');
+}
+</style>
+    <div class="person-content">
+        <div class="backdrop"></div>
+        <div class="content-box">
+            <div class="profile-box">
+                <div class="avatar thumbnail lazyimg">
+                    <img class="poster-background" imgload="{{$root.image_uri}}/w300_and_h450_bestv2/{{vm.profile.profile_path}}">
+                </div>
+                <div class="profile">
+                    <h5 class="text-muted">个人信息</h5>
+                    <div class="attr">
+                        <b>性别:</b>
+                        <span ng-switch="vm.profile.gender">
+                            <span ng-switch-when="1">女</span>
+                            <span  ng-switch-default>男</span>
+                        </span>
+                    </div>
+                    <div class="attr">
+                        <b>受欢迎度:</b>
+                        <span>{{vm.profile.popularity | voteFilter}}</span>
+                    </div>
+                    <div class="attr">
+                        <b>生日:</b>
+                        <span>{{vm.profile.birthday}}</span>
+                    </div>
+                    <div class="attr">
+                        <b>出生地:</b>
+                        <span>{{vm.profile.place_of_birth}}</span>
+                    </div>
+                    <div class="attr">
+                        <b>别名:</b>
+                        <ul>
+                            <li ng-repeat="name in vm.profile.also_known_as track by $index">
+                                <span>{{name}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="overview-box">
+                <h3 class="name">{{vm.profile.name}}</h3>
+                <div class="overview-text-wrapper">
+                    <div class="scroll-box">
+                        <p>{{vm.profile.biography}}</p>
+                    </div>
+                </div>
+                <h5 class="text-muted">主演的作品</h5>
+                <div class="overview-movies flex-middle-center">
+                    <div class="movie-wrapper" ng-repeat="movie in vm.movies track by movie.id">
+                        <div class="movie">
+                            <a ui-sref="root.layout.movies.movieProfile({id: movie.id, name: movie.original_title})">
+                                <div class="thumbnail lazyimg">
+                                    <img imgload="{{$root.image_uri}}/w300_and_h450_bestv2/{{movie.poster_path}}">
+                                </div>
+                            </a>
+                            <h5 class="name">{{movie.title}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <h5 class="number">Timeline</h5>
+                    <ul>
+                        <li ng-repeat="movie in vm.sortByDateMovies track by movie.id"
+                            class="text-muted"
+                            ng-if="movie.release_date">
+                            <date>{{movie.release_date}}</date>
+                            <span><a class="text-info" ui-sref="root.layout.movies.movieProfile({id: movie.id, name: movie.original_title})">{{movie.title}}</a> as {{movie.original_title}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -19,6 +19,7 @@ import personRouter from './pages/person/person.router';
 
 import billboardRouter from './pages/billboard/billboard.router';
 import moviesProfileRouter from './pages/movie-profile/movie-profile.router';
+import personProfileRouter from './pages/person-profile/person-profile.router';
 // 模块
 const modules = [
     uiRouter,
@@ -31,7 +32,8 @@ const modules = [
     tvRouter.name,
     personRouter.name,
     billboardRouter.name,
-    moviesProfileRouter.name
+    moviesProfileRouter.name,
+    personProfileRouter.name
 ];
 
 // global __APP_NAME__:true
