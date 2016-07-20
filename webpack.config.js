@@ -74,6 +74,7 @@ const webpackConfig = {
     },
     output: {
         path: './dist/',
+        // publicPath: '//cdn.rawgit.com/16code/angular-movie-app-demo/master/',
         filename: isProduct ? 'assets/vendor/[name].[hash].js' : '[name].js',
         chunkFilename: isProduct ? 'assets/js/[name].[hash].chunk.js' : '[name].chunk.js'
     },
