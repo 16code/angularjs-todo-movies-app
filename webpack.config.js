@@ -1,7 +1,7 @@
 const path = require('path');
 const args = require('yargs').argv;
 const autoprefixer = require('autoprefixer');
-    // webpack
+// webpack
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -97,6 +97,9 @@ const webpackConfig = {
             test: /\.js$/,
             loader: 'ng-annotate?add=true!babel',
             exclude: /(node_modules|src\/libs)/
+        }, {
+            test: /\.ejs$/,
+            loader: 'ejs-loader'
         }, {
             test: /\.json$/,
             loader: 'json-loader'

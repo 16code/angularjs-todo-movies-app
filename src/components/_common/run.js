@@ -5,4 +5,5 @@ export default function appRun($rootScope, $state, IMAGE_URI) {
     $rootScope.transparentHeader = true;
     $rootScope.image_uri = IMAGE_URI;
     $rootScope.$state = $state;
+    $rootScope.appName = 'Todo Movies';
 }
