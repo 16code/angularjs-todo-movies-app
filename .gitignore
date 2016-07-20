@@ -15,3 +15,5 @@
 *.log
 .vscode
 .eslintcache
+/eslint
+.eslintrc
