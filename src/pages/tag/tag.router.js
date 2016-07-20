@@ -8,7 +8,7 @@ function getStates() {
         {
             state: 'root.layout.tag',
             config: {
-                url: '/tag/{id:int}-{name: replaceUri}',
+                url: '/tag/{id:int}-{name: replaceUri}?page',
                 views: {
                     'main@root': {
                         templateProvider: ['$q', ($q) => {

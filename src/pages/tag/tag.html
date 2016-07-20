@@ -14,4 +14,4 @@
     </div>
     <loading-bar></loading-bar>
 </div>
-<pagination config="vm.paginationConfig" ng-if="vm.movies.length"></pagination>
+<pagination config="vm.paginationConfig" ng-if="vm.movies.length && vm.totalResults > 20 "></pagination>
