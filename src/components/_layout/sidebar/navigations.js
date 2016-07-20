@@ -55,25 +55,13 @@ export default [
         includeParma: 'root.layout.person.*'
     },
     {
-        name: '设置',
+        name: '收藏夹',
         icon: 'star',
-        uri: 'root.layout.movies.bb',
-        childs: [
-            {
-                name: '收藏夹',
-                icon: 'star',
-                uri: 'root.layout.movies.bb'
-            },
-            {
-                name: '浏览历史',
-                icon: 'chart',
-                uri: 'root.layout.movies.aa'
-            },
-            {
-                name: '设置',
-                icon: 'settings',
-                uri: 'root.layout.settings'
-            }
-        ]
+        uri: 'root.layout.movies.bb'
+    },
+    {
+        name: '设置',
+        icon: 'settings',
+        uri: 'root.layout.settings'
     }
 ];

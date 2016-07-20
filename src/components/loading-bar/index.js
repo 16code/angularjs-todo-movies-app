@@ -1,5 +1,4 @@
 import loadingBarHtml from './loading-bar.html';
-import './loading-bar.less';
 const loadingBarComponent = {
     bindings: {
         infinite: '<'

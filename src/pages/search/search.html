@@ -62,7 +62,10 @@
                         ng-repeat="person in vm.persons track by $index"
                         person="person"></person-card>
                 </div>
-                <loading-bar></loading-bar>
+                <div class="loading-bar" ng-if="!vm.$resolved">
+                    <img class="normal" src="../../assets/loading.svg" alt="正在加载" width="32" height="32">
+                    <span>Loading...</span>
+                </div>
                 <pagination config="vm.paginationConfig" ng-if="vm.totalResults > 20 && (vm.movies.length || vm.persons.length)"></pagination>
             </div>
         </div>
