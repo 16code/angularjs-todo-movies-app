@@ -16,6 +16,8 @@ import moviesRouter from './pages/movies/movies.router';
 import tvRouter from './pages/tv/tv.router';
 import personRouter from './pages/person/person.router';
 
+import tagRouter from './pages/tag/tag.router';
+
 
 import billboardRouter from './pages/billboard/billboard.router';
 import moviesProfileRouter from './pages/movie-profile/movie-profile.router';
@@ -31,6 +33,7 @@ const modules = [
     moviesRouter.name,
     tvRouter.name,
     personRouter.name,
+    tagRouter.name,
     billboardRouter.name,
     moviesProfileRouter.name,
     personProfileRouter.name

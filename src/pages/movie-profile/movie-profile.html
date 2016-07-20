@@ -38,15 +38,16 @@
             </div>
         </div>
         <div class="production-info bg-white-only">
-            <div class="keyword root-wrapper">
-                <h5 class="s-title">关键字</h5>
+            <div class="tags root-wrapper" ng-if="vm.tags.$resolved">
+                <h5 class="s-title">标签</h5>
                 <ul>
-                    <li ng-repeat="keyword in vm.keywords track by $index">
-                        <a ui-sref="root.layout.search({name:keyword.name, id: keyword.id})">
-                            <span class="badge badge-purple">{{keyword.name}}</span>
+                    <li ng-repeat="tag in vm.tags track by $index">
+                        <a ui-sref="root.layout.tag({name:tag.name, id: tag.id})">
+                            <span class="badge badge-purple">{{tag.name}}</span>
                         </a>
                     </li>
                 </ul>
+                <div class="empty-list" ng-if="vm.tags.$resolved && !vm.tags.length">此影片暂时还没有任何标签</div>
             </div>
             <div class="casts-box bg-primary root-wrapper">
                 <h5 class="s-title">演员表</h5>

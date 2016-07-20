@@ -20,11 +20,11 @@ class MovieProfileController {
     getMovieKeyWords() {
         this.MoviesApi.$profile({id: this.movie.id, type: 'keywords'})
             .then((resp) => {
-                this.keywords = resp.keywords;
-                this.keywords.$resolved = resp.$resolved;
+                this.tags = resp.keywords;
+                this.tags.$resolved = resp.$resolved;
             }, (err) => {
                 console.log(err);
-                this.keywords.$resolved = true;
+                this.tags.$resolved = true;
             });
     }
     scrollEvent() {
@@ -53,6 +53,7 @@ class MovieProfileController {
             }, (err) => {
                 console.log(err);
                 this[backdropsIsLoaded] = false;
+                this.posters.$resolved = true;
             });
     }
 }
