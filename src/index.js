@@ -17,6 +17,7 @@ import tvRouter from './pages/tv/tv.router';
 import personRouter from './pages/person/person.router';
 
 import tagRouter from './pages/tag/tag.router';
+import searchRouter from './pages/search/search.router';
 
 
 import billboardRouter from './pages/billboard/billboard.router';
@@ -34,6 +35,7 @@ const modules = [
     tvRouter.name,
     personRouter.name,
     tagRouter.name,
+    searchRouter.name,
     billboardRouter.name,
     moviesProfileRouter.name,
     personProfileRouter.name

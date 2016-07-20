@@ -1,0 +1,65 @@
+.tab-container .tab-content {
+    padding:0 15px;
+    background-color: #fff;
+    border: 1px solid #dee5e7;
+    border-top-width: 0;
+    border-radius: 0 0 2px 2px;
+}
+.nav-tabs {
+    border-color: @border-color;
+    border-bottom: 1px solid #ddd;
+    > li {
+        float: left;
+        margin-right: 2px;
+        margin-bottom: -1px;
+        > a {
+            border-radius: 3px 3px 0 0;
+            border-bottom-color: @border-color;
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: transparent;
+            cursor: pointer;
+        }
+        &.active > a,
+        &.active > a:hover {
+            border-color: @border-color;
+        }
+        &:hover > a {
+            border-color: @border-color;
+        }
+        &:hover > a {
+            border-color: #eee #eee #ddd;
+            background-color: rgba(0,0,0,0.05);
+            border-color: @border-color;
+        }
+        &.active > a {
+            cursor: no-drop;
+            border-bottom-color: #fff !important;
+            background-color: #fff;
+        }
+    }
+    .nav-tabs-alt & {
+        &.nav-justified {
+            > li {
+                display: table-cell;
+                width: 1%;
+            }
+        }
+        > li {
+            > a {
+                border-radius: 0;
+                border-color: transparent !important;
+                background: transparent !important;
+                border-bottom-color: @border-color !important;
+            }
+            &.active {
+                > a {
+                    border-bottom-color: @brand-info !important;
+                }
+            }
+        }
+    }
+}

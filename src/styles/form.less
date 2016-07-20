@@ -1,0 +1,45 @@
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #cfdadd;
+    border-radius: 4px;
+    transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+    outline: 0;
+    &:focus {
+        border-color: @brand-warning;
+    }
+}
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+.input-group .form-control {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+    border-radius: 0;
+    border-right-width: 0;
+}
+.input-group-addon,
+.input-group-btn {
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.input-group .form-control,
+.input-group-addon,
+.input-group-btn {
+    display: table-cell;
+}
+.input-group-btn {
+    position: relative;
+    font-size: 0;
+    white-space: nowrap;
+}

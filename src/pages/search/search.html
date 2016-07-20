@@ -1,0 +1,70 @@
+<div class="page-title">
+    <h4><i class="icons icon-magnifier"></i>  Search</h4>
+    <p><small class="text-muted">Search for (movies | persons) by title.</small></p>
+</div>
+<div class="root-wrapper">
+    <div class="search-wrapper">
+        <form name="searchForm"
+            ng-submit="vm.searchStart()"
+            novalidate>
+            <div class="input-group">
+                <input type="text"
+                    ng-model="vm.keyword"
+                    class="form-control"
+                    placeholder="Type keyword"
+                    required>
+                <span class="input-group-btn">
+                    <button type="submit"
+                        class="btn btn-default"
+                        ng-disabled="searchForm.$invalid"
+                        >Search</button>
+                </span>
+            </div>
+        </form>
+        <div class="tab-container">
+            <ul class="nav nav-tabs clearfix">
+                <li ng-repeat="(key, type) in vm.searchTypes"
+                    ng-class="{active: type.key === vm.currentType}">
+                    <a ng-click="vm.changeSearchType(type);"
+                        class="text-cap">{{type.key}}
+                        <span class="badge bg-{{type.color}}"
+                        ng-if="type.totalResults"
+                        ng-bind="type.totalResults">10</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content search-list">
+                <div class="empty-list text-muted"
+                    ng-if="vm.$resolved && !vm.totalResults"
+                    ng-switch="vm.currentType">
+                    <span ng-switch-when='movie'>没有搜索到相关的电影！</span>
+                    <span ng-switch-when='person'>没有搜索到相关的人物！</span>
+                </div>
+                <ul class="movies"
+                    ng-if="vm.currentType === 'movie'">
+                    <li ng-repeat="movie in vm.movies track by $index">
+                        <div class="thumbnail lazyimg">
+                            <img imgload="{{$root.image_uri}}/w342{{movie.poster_path}}">
+                        </div>
+                        <div class="overview">
+                            <h5><a class="text-info"
+                                    ui-sref="root.layout.movies.movieProfile({id: movie.id, name: movie.original_title})">
+                                    {{movie.title}} ({{movie.original_title}})</a>
+                            </h5>
+                            <p><small>{{movie.release_date}}</small></p>
+                            <p class="text">{{movie.overview || '暂时没有影片介绍'}}</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="person-wrapper"
+                    ng-if="vm.currentType === 'person'">
+                    <person-card class="person"
+                        ng-repeat="person in vm.persons track by $index"
+                        person="person"></person-card>
+                </div>
+                <loading-bar></loading-bar>
+                <pagination config="vm.paginationConfig" ng-if="vm.totalResults > 20 && (vm.movies.length || vm.persons.length)"></pagination>
+            </div>
+        </div>
+    </div>
+</div>

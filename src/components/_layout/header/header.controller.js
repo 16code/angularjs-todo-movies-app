@@ -1,7 +1,12 @@
 class HeaderController {
-    constructor() {
-        // TODO:
-        this.a = null;
+    constructor($state) {
+        'ngInject';
+        this.$state = $state;
+    }
+    searchStart(key) {
+        if (key) {
+            this.$state.go('root.layout.search', {type: 'movie', keyword: key});
+        }
     }
 }
 

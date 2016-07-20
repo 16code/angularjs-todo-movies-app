@@ -8,12 +8,20 @@
         <button type="button" class="toggle-menu-btn">
             <i class="icons icon-menu"></i>
         </button>
-        <form class="navbar-form">
+        <form class="navbar-form"
+            name="navbarSearchForm"
+            ng-submit="vm.searchStart(vm.keyword)">
             <div class="form-group">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="search by movies">
+                    <input type="text"
+                        class="form-control"
+                        ng-model="vm.keyword"
+                        placeholder="Search..."
+                        require>
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-search">
+                        <button type="submit"
+                            ng-disabled="navbarSearchForm.$invalid"
+                            class="btn btn-search">
                             <i class="icons icon-magnifier"></i>
                         </button>
                     </span>

@@ -1,4 +1,4 @@
-function appHomeRun(RouterHelper) {
+function appSearchRun(RouterHelper) {
     'ngInject';
     RouterHelper.configureStates(getStates());
 }
@@ -6,24 +6,24 @@ function appHomeRun(RouterHelper) {
 function getStates() {
     return [
         {
-            state: 'root.layout.home',
+            state: 'root.layout.search',
             config: {
-                url: '/',
+                url: '/search?type&keyword&page',
                 views: {
                     'main@root': {
                         templateProvider: ['$q', ($q) => {
                             return $q((resolve) => {
                                 require.ensure([], () => {
-                                    resolve(require('./home.html'));
-                                }, 'home');
+                                    resolve(require('./search.html'));
+                                }, 'search');
                             });
                         }],
-                        controller: 'HomeController as vm'
+                        controller: 'SearchController as vm'
                     }
                 },
                 data: {
-                    title: 'Welcome',
-                    className: 'home'
+                    title: '搜索',
+                    className: 'search'
                 },
                 resolve: {
                     loadModule: ['$q', '$ocLazyLoad', ($q, $ocLazyLoad) => {
@@ -31,7 +31,7 @@ function getStates() {
                             require.ensure([], () => {
                                 $ocLazyLoad.load({name: require('./index').default});
                                 resolve();
-                            }, 'home');
+                            }, 'search');
                         });
                     }]
                 }
@@ -40,5 +40,5 @@ function getStates() {
     ];
 }
 
-export default angular.module('app.routes.home', [])
-    .run(appHomeRun);
+export default angular.module('app.routes.search', [])
+    .run(appSearchRun);
