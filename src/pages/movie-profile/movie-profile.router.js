@@ -23,7 +23,8 @@ function getStates() {
                 },
                 data: {
                     title: '影视资料',
-                    className: 'profile'
+                    className: 'profile',
+                    ignoreLoadingBar: true
                 },
                 resolve: {
                     loadModule: ['$q', '$ocLazyLoad', ($q, $ocLazyLoad) => {

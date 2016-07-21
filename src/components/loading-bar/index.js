@@ -5,16 +5,22 @@ const loadingBarComponent = {
     },
     template: loadingBarHtml,
     controller: class loadingBarController {
-        constructor($scope, $element, $attrs, $http) {
+        constructor($scope, $element, $attrs, $http, $rootScope) {
             'ngInject';
-            Object.assign(this, {$scope, $element, $attrs, $http});
+            Object.assign(this, {$scope, $element, $attrs, $http, $rootScope});
             $scope.isLoading = () => {
                 return this.$http.pendingRequests.length > 0;
             };
-            $scope.$watch($scope.isLoading, (v) => {
+            const loadingWatch = $scope.$watch($scope.isLoading, (v) => {
                 if (v) {
                     $element[0].style.display = 'block';
                 } else {
+                    $element[0].style.display = 'none';
+                }
+            });
+            $rootScope.$on('$stateChangeStart', (event, toState) => {
+                if (toState.data && toState.data.ignoreLoadingBar) {
+                    loadingWatch();
                     $element[0].style.display = 'none';
                 }
             });

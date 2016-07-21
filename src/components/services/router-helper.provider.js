@@ -80,7 +80,7 @@ class RouterHelper {
                     toState.redirectTo.params || {}, {absolute: true});
                 window.location.href = redirectToUri;
             }
-            this.$anchorScroll();
+            // this.$anchorScroll();
         });
     }
     getStates() {
