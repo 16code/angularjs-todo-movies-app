@@ -6,9 +6,9 @@
             <span>&laquo;</span>
         </li>
         <li ng-repeat="item in pagination.pageList track by $index"
-            ng-class="{'current': item == pagination.config.currentPage, 'separate': item == '...'}"
-            ng-click="pagination.changeCurrentPage(item)">
-            <span>{{ item }}</span>
+            ng-class="{'current': item.page == pagination.config.currentPage, 'separate': item.page == '...'}">
+            <a href="{{item.uri}}" ng-if="item.uri">{{item.page}}</a>
+            <span ng-if="!item.uri">{{item.page}}</span>
         </li>
         <li ng-class="{disabled: pagination.config.currentPage == pagination.config.numberOfPages}"
             ng-click="pagination.nextPage()">

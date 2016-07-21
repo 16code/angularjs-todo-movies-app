@@ -7,9 +7,7 @@ class PersonController {
             currentPage: this.$state.params.page || 1,
             itemsPerPage: 20,
             pagesLength: 9,
-            pageOnChange: () => {
-                $state.go($state.current, {page: this.paginationConfig.currentPage});
-            }
+            state: $state.current.name
         };
         this.activate();
     }

@@ -6,9 +6,7 @@ class TagController {
             currentPage: this.$stateParams.page || 1,
             itemsPerPage: 20,
             pagesLength: 9,
-            pageOnChange: () => {
-                this.$state.go($state.current, {page: this.paginationConfig.currentPage});
-            }
+            state: $state.current.name
         };
         this.title = ($stateParams.name).replace(/\-/, ' ');
         this.description = 'Get the basic information for a specific keyword id.';

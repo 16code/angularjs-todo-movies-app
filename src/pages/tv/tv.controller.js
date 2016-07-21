@@ -6,9 +6,7 @@ class TvController {
             currentPage: this.$state.params.page || 1,
             itemsPerPage: 20,
             pagesLength: 9,
-            pageOnChange: () => {
-                this.$state.go($state.current, {page: this.paginationConfig.currentPage});
-            }
+            state: $state.current.name
         };
         this.title = '热门剧集';
         this.description = 'Get the list of popular TV shows. This list refreshes every day.';

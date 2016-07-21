@@ -1,18 +1,20 @@
 class PaginationController {
-    constructor($scope, $element, $attrs) {
+    constructor($scope, $element, $attrs, $state) {
         'ngInject';
         Object.assign(this, {
             $scope,
             $element,
-            $attrs
+            $attrs,
+            $state
         });
         // 定义分页的长度必须为奇数 (default:9)
+        this.configUri = this.config.state;
         this.config.pagesLength = Number(this.config.pagesLength) || 9;
         if (this.config.pagesLength % 2 === 0) {
             // 如果不是奇数的时候处理一下
             this.config.pagesLength = this.config.pagesLength - 1;
         }
-        this.$scope.$watch(() => {
+        const watcher = this.$scope.$watch(() => {
             this.config.totalItems = this.config.totalItems || 0;
             const newValue =
                 `${this.config.totalItems} ${this.config.currentPage} ${this.config.itemsPerPage}`;
@@ -34,10 +36,11 @@ class PaginationController {
                 self.config.currentPage = self.config.numberOfPages;
             }
             self.pageList = [];
+
             if (self.config.numberOfPages <= self.config.pagesLength) {
                 // 判断总页数如果小于等于分页的长度，若小于则直接显示
                 for (let i = 1; i <= self.config.numberOfPages; i++) {
-                    self.pageList.push(i);
+                    self.pageList.push(self.parseStateToUri(i));
                 }
             } else {
                 // 总页数大于分页长度（此时分为三种情况：1.左边没有...2.右边没有...3.左右都有...）
@@ -46,36 +49,45 @@ class PaginationController {
                 if (self.config.currentPage <= offset) {
                     // 左边没有...
                     for (let i = 1; i <= offset + 1; i++) {
-                        self.pageList.push(i);
+                        self.pageList.push(self.parseStateToUri(i));
                     }
-                    self.pageList.push('...');
-                    self.pageList.push(self.config.numberOfPages);
+                    self.pageList.push({page: '...'});
+                    self.pageList.push(self.parseStateToUri(self.config.numberOfPages));
                 } else if (self.config.currentPage > self.config.numberOfPages - offset) {
-                    self.pageList.push(1);
-                    self.pageList.push('...');
+                    self.pageList.push(self.parseStateToUri(1));
+                    self.pageList.push({page: '...'});
                     for (let i = offset + 1; i >= 1; i--) {
-                        self.pageList.push(self.config.numberOfPages - i);
+                        self.pageList.push(self.parseStateToUri(self.config.numberOfPages - i));
                     }
-                    self.pageList.push(self.config.numberOfPages);
+                    self.pageList.push(self.parseStateToUri(self.config.numberOfPages));
                 } else {
                     // 最后一种情况，两边都有...
-                    self.pageList.push(1);
-                    self.pageList.push('...');
+                    self.pageList.push(self.parseStateToUri(1));
+                    self.pageList.push({page: '...'});
                     for (let i = Math.ceil(offset / 2); i >= 1; i--) {
-                        self.pageList.push(self.config.currentPage - i);
+                        self.pageList.push(self.parseStateToUri(self.config.currentPage - i));
                     }
-                    self.pageList.push(self.config.currentPage);
+                    self.pageList.push(self.parseStateToUri(self.config.currentPage));
                     for (let i = 1; i <= offset / 2; i++) {
-                        self.pageList.push(self.config.currentPage + i);
+                        self.pageList.push(self.parseStateToUri(self.config.currentPage + i));
                     }
-                    self.pageList.push('...');
-                    self.pageList.push(self.config.numberOfPages);
+                    self.pageList.push({page: '...'});
+                    self.pageList.push(self.parseStateToUri(self.config.numberOfPages));
                 }
             }
             if (self.config.pageOnChange && !(oldValue !== newValue && oldValue[0] === 0)) {
                 self.config.pageOnChange();
             }
+            watcher();
         }
+    }
+    parseStateToUri(number) {
+        const uri = this.$state.href(
+            this.config.state,
+            {page: number},
+            {absolute: false}
+        );
+        return {uri, page: number};
     }
     changeCurrentPage(item) {
         if (item === '...') {
@@ -86,12 +98,22 @@ class PaginationController {
     prevPage() {
         if (this.config.currentPage > 1) {
             this.config.currentPage--;
+            return this.$state.go(
+                this.config.state,
+                {page: this.config.currentPage--}
+            );
         }
+        return false;
     }
     nextPage() {
         if (this.config.currentPage < this.config.numberOfPages) {
             this.config.currentPage++;
+            return this.$state.go(
+                this.config.state,
+                {page: this.config.currentPage++}
+            );
         }
+        return false;
     }
 }
 export default PaginationController;

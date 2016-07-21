@@ -11,9 +11,7 @@ class PlayingController extends MoviesBaseController {
             or are being released this week. This list refreshes every day.`;
         this.paginationConfig = {
             currentPage: $state.params.page,
-            pageOnChange: () => {
-                $state.go($state.current, {page: this.paginationConfig.currentPage});
-            }
+            state: $state.current.name
         };
         super.activate();
     }

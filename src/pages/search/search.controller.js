@@ -12,12 +12,7 @@ class SearchController {
             currentPage: this.$stateParams.page || 1,
             itemsPerPage: 20,
             pagesLength: 9,
-            pageOnChange: () => {
-                this.$state.go($state.current, {
-                    page: this.paginationConfig.currentPage,
-                    type: this.currentType
-                });
-            }
+            state: $state.current.name
         };
         this.currentType = $stateParams.type || 'movie';
         if (!$stateParams.type) {
