@@ -1,8 +1,9 @@
 class PersonProfileController {
-    constructor($stateParams, personProfile, PersonApi, RouterHelper) {
+    constructor($stateParams, $filter, personProfile, PersonApi, RouterHelper) {
         'ngInject';
-        Object.assign(this, {$stateParams, personProfile, PersonApi});
+        Object.assign(this, {$stateParams, $filter, personProfile, PersonApi});
         this.profile = personProfile;
+        this.popularity = $filter('voteFilter')(this.profile.popularity);
         RouterHelper.updateDocTitle(this.profile.name);
         this.activate();
     }

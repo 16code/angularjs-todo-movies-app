@@ -9,11 +9,10 @@
     </div>
     <div class="meta">
         <h5 class="name">{{vm.movie.title}}</h5>
-        <p class="genre">{{vm.movie.genre_ids | parseGenre}}</p>
+        <p class="genre">{{vm.genre}}</p>
         <p class="star">
             <i class="icons icon-star"></i>
-            <span class="number">{{vm.movie.vote_average | voteFilter}}</span>
+            <span class="number">{{vm.vote}}</span>
         </p>
     </div>
-    <ng-transclude></ng-transclude>
 </div>

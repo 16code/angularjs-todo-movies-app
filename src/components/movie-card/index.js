@@ -6,9 +6,6 @@ const MovieCardComponent = {
     bindings: {
         movie: '<'
     },
-    transclude: {
-        handle: '?handle'
-    },
     template: movieCardHtml,
     controller: MovieCardController,
     controllerAs: 'vm'
