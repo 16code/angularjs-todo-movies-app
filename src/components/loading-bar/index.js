@@ -13,15 +13,15 @@ const loadingBarComponent = {
             };
             const loadingWatch = $scope.$watch($scope.isLoading, (v) => {
                 if (v) {
-                    $element[0].style.display = 'block';
+                    this.hasLoading = true;
                 } else {
-                    $element[0].style.display = 'none';
+                    this.hasLoading = false;
                 }
             });
             $rootScope.$on('$stateChangeStart', (event, toState) => {
                 if (toState.data && toState.data.ignoreLoadingBar) {
                     loadingWatch();
-                    $element[0].style.display = 'none';
+                    this.hasLoading = false;
                 }
             });
         }
