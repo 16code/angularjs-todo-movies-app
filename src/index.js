@@ -19,10 +19,11 @@ import personRouter from './pages/person/person.router';
 import tagRouter from './pages/tag/tag.router';
 import searchRouter from './pages/search/search.router';
 
-
 import billboardRouter from './pages/billboard/billboard.router';
 import moviesProfileRouter from './pages/movie-profile/movie-profile.router';
 import personProfileRouter from './pages/person-profile/person-profile.router';
+
+import notfoundRouter from './pages/404/404.router';
 // 模块
 const modules = [
     uiRouter,
@@ -38,7 +39,8 @@ const modules = [
     searchRouter.name,
     billboardRouter.name,
     moviesProfileRouter.name,
-    personProfileRouter.name
+    personProfileRouter.name,
+    notfoundRouter.name
 ];
 
 // global __APP_NAME__:true

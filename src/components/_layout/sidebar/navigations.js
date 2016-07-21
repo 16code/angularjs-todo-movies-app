@@ -57,11 +57,11 @@ export default [
     {
         name: '收藏夹',
         icon: 'star',
-        uri: 'root.layout.movies.bb'
+        uri: 'root.layout.notfound'
     },
     {
         name: '设置',
         icon: 'settings',
-        uri: 'root.layout.settings'
+        uri: 'root.layout.notfound'
     }
 ];

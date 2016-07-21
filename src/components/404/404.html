@@ -1,0 +1,17 @@
+<div class="coding-wrapper flex-middle-center">
+    <h2>Oops. The page you were looking for doesn't exist.</h2>
+    <small class="text-muted">You may have mistyped address or the page may have removed.</small>
+    <div class="coding-box">
+        <div class="terminal">
+            <p>The page you requested cannot be found. Usage <span class="text-warning">state name</span> jump to page, Usage <span class="text-warning">state --list</span> List states</p>
+            <p ng-repeat="msg in vm.messages track by $index">{{msg}}</p>
+        </div>
+        <div class="input-box">
+            <input class="input" id="input" ng-keypress="vm.activate($event)" type="text" ng-model="vm.input" autofocus ng-if="!wait">
+            <label for="input" class="terminal-input" ng-bind="vm.input">loading...</label>
+        </div>
+    </div>
+    <div class="goback">
+        <a href="{{vm.prevUri}}">返回上一页</a>
+    </div>
+</div>

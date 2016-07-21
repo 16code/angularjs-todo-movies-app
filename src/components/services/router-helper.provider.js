@@ -1,7 +1,8 @@
 import angular from 'angular';
 const [handlingStateChangeError, hasOtherwise, stateCounts] = [Symbol(), Symbol(), Symbol()];
 class RouterHelper {
-    constructor(config, $stateProvider, $urlRouterProvider, $rootScope, $state, $anchorScroll, LoginResolve) {
+    constructor(config, $stateProvider, $urlRouterProvider, $rootScope, $state, $anchorScroll,
+        $location, LoginResolve) {
         Object.assign(this, {
             config,
             $stateProvider,
@@ -9,6 +10,7 @@ class RouterHelper {
             $rootScope,
             $state,
             $anchorScroll,
+            $location,
             LoginResolve
         });
         this[handlingStateChangeError] = false;
@@ -43,33 +45,28 @@ class RouterHelper {
     }
     handleRoutingErrors() {
         // 错误路由处理
-        this.$rootScope.$on('$stateChangeError',
-            (event, toState, toParams, fromState, fromParams, error) => {
-                if (this[handlingStateChangeError]) {
-                    return;
-                }
-                this[stateCounts].errors++;
-                this[handlingStateChangeError] = true;
-                const destination = (toState &&
-                        (toState.title || toState.name || toState.loadedTemplateUrl)) ||
-                    'unknown target';
-                const errorMessage = (error && error.message) || error;
-                const msg = `Error routing to ${destination}.\nReason: ${errorMessage}.`;
-                console.warn(msg);
-                // 错误路由具体处理
-                switch (error) {
-                    case 'requireLogin':
-                        this.$state.prev = {
-                            state: toState.name,
-                            params: toParams
-                        };
-                        this.$state.go('root.layout.login');
-                        break;
-                    default:
-                        this.$state.go('root.layout.home');
-                }
+        this.$rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
+            if (this[handlingStateChangeError]) {
+                return;
             }
-        );
+            this.$rootScope.redirectUrl = window.encodeURIComponent(this.$location.absUrl());
+            this[stateCounts].errors++;
+            this[handlingStateChangeError] = true;
+            const destination = (toState &&
+                    (toState.title || toState.name || toState.loadedTemplateUrl)) ||
+                'unknown target';
+            const errorMessage = (error && error.message) || error;
+            const msg = `Error routing to ${destination}.\nReason: ${errorMessage}.`;
+            console.warn(msg);
+            // 错误路由具体处理
+            switch (error) {
+                case 'requireLogin':
+                    this.$state.go('root.layout.login');
+                    break;
+                default:
+                    this.$state.go('root.layout.home');
+            }
+        });
     }
     handleRoutingChangeStart() {
         this.$rootScope.$on('$stateChangeStart', (event, toState) => {
@@ -92,18 +89,21 @@ class RouterHelper {
             this.$rootScope.title = newTitle;
             return;
         }
-        this.$rootScope.$on('$stateChangeSuccess',
-            (event, toState) => {
-                this[stateCounts].changes++;
-                this[handlingStateChangeError] = false;
-                const title = `${toState.data.title} - ${this.config.mainTitle}`;
-                const pageClass = toState.data.className || 'default';
-                // 更新文档 title && class，可以利用 page class 变换不同页面表现样式
-                this.$rootScope.title = title;
-                this.$rootScope.pageClass = pageClass;
-                this.$anchorScroll();
-            }
-        );
+        this.$rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
+            this[stateCounts].changes++;
+            this[handlingStateChangeError] = false;
+            const title = `${toState.data.title} - ${this.config.mainTitle}`;
+            const pageClass = toState.data.className || 'default';
+            // 更新文档 title && class，可以利用 page class 变换不同页面表现样式
+            this.$rootScope.title = title;
+            this.$rootScope.pageClass = pageClass;
+            this.$rootScope.prev = {
+                state: fromState.name,
+                params: fromParams
+            };
+            this.$rootScope.redirectUrl = window.encodeURIComponent(this.$location.absUrl());
+            this.$anchorScroll();
+        });
     }
 }
 class RouterHelperProvider {
@@ -123,11 +123,11 @@ class RouterHelperProvider {
     configure(cfg) {
         angular.extend(this.config, cfg);
     }
-    $get($rootScope, $state, $anchorScroll, LoginResolve) {
+    $get($rootScope, $state, $anchorScroll, $location, LoginResolve) {
         'ngInject';
         return new RouterHelper(
             this.config, this.$stateProvider, this.$urlRouterProvider,
-            $rootScope, $state, $anchorScroll, LoginResolve);
+            $rootScope, $state, $anchorScroll, $location, LoginResolve);
     }
 }
 export default RouterHelperProvider;
