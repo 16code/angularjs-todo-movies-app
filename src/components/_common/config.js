@@ -4,7 +4,7 @@ function appConfig(RouterHelperProvider, $resourceProvider,
     RouterHelperProvider.configure({mainTitle: 'AngularJs Movie App'});
 
     NotificationProvider.setOptions({
-        delay: 100000,
+        delay: 5000,
         startTop: 10,
         startRight: 10,
         verticalSpacing: 20,
