@@ -17,3 +17,39 @@
 	-o-user-select: @select;
 	user-select: @select;
 }
+.button-variant(@color; @background; @border) {
+	color: @color !important;
+	background-color: @background;
+	border-color: @border;
+	&.active,
+	&:active,
+	&:focus,
+	&:hover,
+	.open .dropdown-toggle& {
+		color: @color !important;
+		background-color: darken(@background, 5%);
+		border-color: darken(@border, 8%);
+	}
+	&.active,
+	&:active,
+	.open .dropdown-toggle& {
+		background-image: none;
+	}
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] & {
+		&,
+		&.active,
+		&:active,
+		&:focus,
+		&:hover {
+			background-color: @background;
+			border-color: @border
+		}
+	}
+}
+
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+    box-shadow: @shadow;
+}

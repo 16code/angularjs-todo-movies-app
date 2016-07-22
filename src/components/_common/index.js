@@ -8,6 +8,8 @@ import ScrollEventService from '../services/scroll-coord-event.service';
 import HttpInterceptor from '../services/http-interceptor.service';
 import ErrorHandlerService from '../services/error-handler.service';
 import ErrorMessagesService from '../services/error-messages.service';
+import AccountService from '../services/account.service';
+import StorageService from '../services/storage.service';
 // filter
 import filter from '../filter';
 // components
@@ -37,8 +39,10 @@ export default angular.module('app.common',
     .service('LoginResolve', LoginResolveService)
     .service('MoviesApi', MoviesService)
     .service('PersonApi', PersonService)
+    .service('AccountApi', AccountService)
     .service('TvApi', TvService)
     .service('Base64code', Base64Unicode)
+    .service('Storage', StorageService)
     .service('ScrollEvent', ScrollEventService)
     .factory('HttpInterceptor', HttpInterceptor)
     .provider('RouterHelper', RouterHelperProvider)

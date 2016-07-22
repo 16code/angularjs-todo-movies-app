@@ -1,0 +1,54 @@
+.signin-page {
+    .app-header-fixed {
+        padding-top: 0;
+    }
+}
+.signin-form {
+    width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10vh;
+    h2 {
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+    .form-box {
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);;
+        margin:3rem 0 0;
+        padding:1.5rem 2rem 3rem;
+        background-color: #fff;
+        border-radius: 3px;
+        position: relative;
+    }
+    .login-message {
+        padding:.8rem 1.5rem;
+        margin-bottom: 1.5rem;
+        color: #fff;
+        border-radius: 2px;
+        font-weight: 300;
+        &.error {
+            background-color:#f05050;
+        }
+        &.success {
+            background-color: #7266ba;
+        }
+        &.ng-enter,
+        &.ng-leave {
+            transition:all .2s ease-in-out;
+        }
+        &.ng-enter,
+        &.ng-leave.ng-leave-active {
+            -webkit-transform: scaleY(0);
+            -moz-transform: scaleY(0);
+            transform: scaleY(0);
+            opacity: 0;
+        }
+        &.ng-enter.ng-enter-active,
+        &.ng-leave {
+            -webkit-transform: scaleY(1);
+            -moz-transform: scaleY(1);
+            transform: scaleY(1);
+            opacity: 1;
+        }
+    }
+}

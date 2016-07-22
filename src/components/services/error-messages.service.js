@@ -12,7 +12,10 @@ const ERROR_MESSAGE = {
 
 class ErrorService {
     getErrorMessage(errorCode) {
-        return ERROR_MESSAGE[errorCode] || ERROR_MESSAGE.SERVER_ERROR;
+        if (errorCode.serviceMsg) {
+            return errorCode.serviceMsg;
+        }
+        return ERROR_MESSAGE[errorCode.code] || ERROR_MESSAGE.SERVER_ERROR;
     }
 }
 

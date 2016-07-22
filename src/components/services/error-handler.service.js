@@ -6,28 +6,34 @@ class ErrorHandlerService {
     }
     catcher(reason) {
         // reason
-        let code = 'SERVER_ERR';
+        const data = {
+            code: 'SERVER_ERR'
+        };
         if (reason) {
             const type = typeof reason;
             switch (type) {
                 case 'object':
-                    code = reason.code;
+                    data.code = reason.code;
                     break;
                 case 'string':
-                    code = reason;
+                    data.code = reason;
                     break;
                 default:
             }
         }
-        code = code.toUpperCase();
+        data.code = data.code.toUpperCase();
         console.log({
-            code,
-            msg: this.ErrorMessage.getErrorMessage(code)
+            data,
+            msg: this.ErrorMessage.getErrorMessage(data)
         });
-        this.Notification.error(this.ErrorMessage.getErrorMessage(code));
+        if (reason.data && reason.data.status_message) {
+            data.serviceMsg = reason.data.status_message;
+        }
+        this.Notification.error(this.ErrorMessage.getErrorMessage(data));
         return this.$q.reject({
-            code,
-            msg: this.ErrorMessage.getErrorMessage(code)
+            data,
+            reason: reason.data,
+            msg: this.ErrorMessage.getErrorMessage(data)
         });
     }
 }

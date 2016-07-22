@@ -8,6 +8,10 @@ function HttpInterceptor($q, API_KEY) {
                 const defaultLang = config.params.language || 'zh';
                 config.params.api_key = API_KEY;
                 config.params.language = defaultLang;
+                const hasUrlParams = String.prototype.indexOf;
+                if (hasUrlParams.call(config.url, 'authentication') !== -1) {
+                    delete config.params.language;
+                }
             }
             return config || $q.when(config);
         },
