@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // get shell parameters
 const isProduct = args.prod;
 const isMock = args.mock;
-const APP_NAME = JSON.stringify('App');
+const APP_NAME = JSON.stringify('app');
 const API_HOST = JSON.stringify('//api.themoviedb.org/3');
 const IMAGE_URI = JSON.stringify('//image.tmdb.org/t/p');
 const MOIVES_API_KEY = JSON.stringify('7b743a8f4b20e473e2d8bf71fdc313e4');
@@ -143,7 +143,6 @@ const webpackConfig = {
         return [autoprefixer];
     }
 };
-
 function nodeModulesPath(filePath) {
     return path.join(__dirname, 'node_modules', filePath);
 }
