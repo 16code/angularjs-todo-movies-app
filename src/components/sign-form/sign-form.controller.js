@@ -4,49 +4,26 @@
 // 3. 那个 request token 去请求 session_id
 // 特别说明 第2步不可绕过
 class SignFormcontroller {
-    constructor($state, AccountApi, Storage) {
+    constructor($state, AccountApi) {
         'ngInject';
-        Object.assign(this, {$state, AccountApi, Storage});
+        Object.assign(this, {$state, AccountApi});
     }
-    submit(account) {
-        const self = this;
+    login(account) {
         // 表单是否验证通过
         if (this.loginForm.$invalid) return;
         this.loginError = null;
         this.isAjaxRequest = true;
-        // api 需要先去请求 request token
-        this.AccountApi.$requestToken()
+        this.AccountApi.$login(account)
             .then((resp) => {
-                // token 请求成功执行登录操作
-                if (resp.success) {
-                    self.login(resp, account);
-                }
-            })
-            .catch(self._error);
+                console.log(resp);
+            }, (err) => this.__error(err));
     }
-    login(token, account) {
-        const login = this.AccountApi.$login(token, account);
-        login.then((resp) => {
-            this.setErrorMessage('success', '登录成功，正在创建session');
-            this.session(resp, account);
-        }, (err) => this._error(err));
-    }
-    session(token, account) {
-        const session = this.AccountApi.$session(token);
-        session.then((resp) => {
-            this.setErrorMessage('success', 'session创建成功');
-            this.Storage.set('session', {
-                session_id: resp.session_id,
-                username: account.username
-            });
-        }, (err) => this._error(err));
-    }
-    _error(reason) {
+    __error(reason) {
         console.log(reason);
-        this.setErrorMessage('error', reason.data.status_message);
+        this.__setErrorMessage('error', reason.data.status_message);
         this.isAjaxRequest = false;
     }
-    setErrorMessage(type, text) {
+    __setErrorMessage(type, text) {
         this.loginError = {
             type,
             text

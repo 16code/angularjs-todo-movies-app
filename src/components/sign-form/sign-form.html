@@ -5,13 +5,13 @@
             <small>欢迎体验 Todo Movies App， 使用之前请先注册 themoviedb 的账户</small>
         </div>
         <div class="form-box">
-            <div ng-if="form.needCheckLogin"
+            <div ng-if="form.hasUserLoginState"
                 class="login-checking white-text">
                 <p class="loading-text">{{form.userInfo ? form.userInfo.username : 'Checking Login User...'}}</p>
             </div>
             <form class="login-form"
                 name="form.loginForm"
-                ng-submit="form.submit(form.account)"
+                ng-submit="form.login(form.account)"
                 autocomplete="off"
                 novalidate>
                 <div ng-if="form.loginError"

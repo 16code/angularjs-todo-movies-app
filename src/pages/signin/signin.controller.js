@@ -1,17 +1,20 @@
 class SignInController {
-    constructor(Storage, AccountApi) {
+    constructor(AccountApi) {
         'ngInject';
-        Object.assign(this, {Storage, AccountApi});
+        Object.assign(this, {AccountApi});
         this.$checkLoggedInStatus();
     }
-    // 验证本地 session_id
+
+    // 验证用户本地 session
     $checkLoggedInStatus() {
-        this.needCheckLogin = true;
-        const userSession = this.Storage.get('session');
-        if (userSession) {
-            this.userInfo = userSession;
+        this.hasUserLoginState = true;
+        const isLoggedIn = this.AccountApi.$isLoggedIn();
+        if (isLoggedIn) {
+            const userInfo = this.AccountApi.$getUserInfo();
+            this.userInfo = userInfo;
+            console.log(this.userInfo);
         } else {
-            this.needCheckLogin = false;
+            this.hasUserLoginState = false;
         }
     }
 }

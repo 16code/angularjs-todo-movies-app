@@ -23,11 +23,11 @@ class StorageService {
         const cache = this.storage.getItem(key);
         if (cache) {
             const object = JSON.parse(cache);
-            console.log(object.expiry, new Date().getTime());
-            if (object.expiry > new Date()) {
-                return object.data;
+            const dataNow = new Date().getTime();
+            if (object.expiry < dataNow) {
+                return this.storage.removeItem(key);
             }
-            this.storage.removeItem(key);
+            return object.data;
         }
         if (typeof nullCallback === 'function') {
             return nullCallback(key);
