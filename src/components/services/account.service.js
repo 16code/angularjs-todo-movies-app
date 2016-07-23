@@ -19,7 +19,10 @@ class AccountService {
                 this.__setUser(userData);
                 resolve(userData);
             })
-            .catch((reason) => reject(reason));
+            .catch((reason) => {
+                this.__clearUser();
+                reject(reason);
+            });
         });
     }
     // 请求token
@@ -64,6 +67,8 @@ class AccountService {
             if (user) {
                 this[isLoggedIn] = true;
             }
+        } else {
+            this.__clearUser();
         }
         return this[isLoggedIn];
     }
@@ -83,6 +88,7 @@ class AccountService {
     __clearUser() {
         this[isLoggedIn] = false;
         this[userInfo] = null;
+        this.Storage.remove('user');
     }
 }
 
