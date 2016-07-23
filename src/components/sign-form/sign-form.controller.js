@@ -4,9 +4,9 @@
 // 3. 那个 request token 去请求 session_id
 // 特别说明 第2步不可绕过
 class SignFormcontroller {
-    constructor($state, AccountApi) {
+    constructor($state, AccountApi, Storage) {
         'ngInject';
-        Object.assign(this, {$state, AccountApi});
+        Object.assign(this, {$state, AccountApi, Storage});
     }
     submit(account) {
         const self = this;
@@ -35,7 +35,10 @@ class SignFormcontroller {
         const session = this.AccountApi.$session(token);
         session.then((resp) => {
             this.setErrorMessage('success', 'session创建成功');
-            console.log(resp, account);
+            this.Storage.set('session', {
+                session_id: resp.session_id,
+                username: account.username
+            });
         }, (err) => this._error(err));
     }
     _error(reason) {

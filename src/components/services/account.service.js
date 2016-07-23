@@ -12,7 +12,7 @@ class AccountService {
     }
     $login(token, account) {
         return this.$q((resolve, reject) => {
-            const promise = this.$validateLogin(token, account);
+            const promise = this.$validateLoggedInOnline(token, account);
             promise.then((resp) => {
                 resolve(resp);
             }, (err) => {
@@ -30,7 +30,7 @@ class AccountService {
         });
     }
     // 验证登录状态
-    $validateLogin(token, account) {
+    $validateLoggedInOnline(token, account) {
         const api = this.$resource(`${this.API}/authentication/token/validate_with_login`);
         const {username, password} = account;
         return this.$q((resolve, reject) => {

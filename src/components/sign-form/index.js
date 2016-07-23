@@ -3,7 +3,8 @@ import signFormHTML from './sign-form.html';
 import SignFormcontroller from './sign-form.controller.js';
 const signInFormComponent = {
     bindings: {
-        data: '='
+        needCheckLogin: '<',
+        userInfo: '<'
     },
     template: signFormHTML,
     controller: SignFormcontroller,

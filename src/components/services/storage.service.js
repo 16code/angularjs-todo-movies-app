@@ -3,7 +3,7 @@ class StorageService {
     constructor($window) {
         'ngInject';
         Object.assign(this, {$window});
-        this.prefix = 'movie';
+        this.prefix = 'movie_app_';
         // Global cache expiry
         // 86,400,000ms 1天
         this.expiry = 86400000;
