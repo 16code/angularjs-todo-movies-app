@@ -1,21 +1,21 @@
 const [isLoggedIn, userInfo] = [Symbol(), Symbol()];
 class AccountService {
-    constructor($resource, $rootScope, $q, ErrorHandler, Storage, Base64, API) {
+    constructor($resource, $rootScope, $q, ErrorHandler, Storage, API) {
         'ngInject';
-        Object.assign(this, {$resource, $rootScope, $q, ErrorHandler, Storage, Base64, API});
+        Object.assign(this, {$resource, $rootScope, $q, ErrorHandler, Storage, API});
         this[isLoggedIn] = false;
         this[userInfo] = null;
     }
-
     $login(account) {
         return this.$q((resolve, reject) => {
             const promise = this.$requestToken();
             promise.then((respToken) => respToken)
             .then((token) => this.$validateLoggedInOnline(token, account))
             .then((validate) => this.$createSession(validate))
+            .then((session) => this.$userInfo(session))
             .then((data) => {
                 // 返回用户token session 和账户信息
-                const userData = {token: data.token, session: data.session, account};
+                const userData = {token: data.requestData.token, session: data.requestData.session, user: data.user};
                 this.__setUser(userData);
                 resolve(userData);
             })
@@ -66,6 +66,18 @@ class AccountService {
             });
         });
     }
+    // 获取用户信息，比如头像 ID...
+    $userInfo(data) {
+        const api = this.$resource(`${this.API}/account`);
+        return this.$q((resolve, reject) => {
+            const promise = api.get({session_id: data.session}).$promise;
+            promise.then((resp) => {
+                resolve({requestData: data, user: resp});
+            }, (err) => {
+                reject(err);
+            });
+        });
+    }
     // 验证用户是否已登录
     $isLoggedIn() {
         if (!this[userInfo]) {
@@ -86,8 +98,7 @@ class AccountService {
         this.Storage.set('user', {
             token: userData.token,
             session: userData.session,
-            username: userData.account.username,
-            password: this.Base64.encode(userData.account.password)
+            user: userData.user
         });
     }
     __clearUser() {

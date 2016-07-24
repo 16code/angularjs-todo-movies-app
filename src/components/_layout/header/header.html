@@ -30,7 +30,20 @@
         </form>
     </div>
     <div class="account">
-        <a class="login" ui-sref="root.layout.login"><i class="icons icon-user"></i></a>
+        <div class="user"
+            ng-if="$root.userIsLoggedIn">
+            <a href="#" title="个人中心">
+                <span class="name">{{$root.user.username}}</span>
+                <img class="avatar" ng-src="//secure.gravatar.com/avatar/{{$root.user.avatar}}.jpg?s=32" /></a>
+            <a class="logout"
+                title="logout"
+                ui-sref="root.layout.login({action: 'logout'})">退出登录</a>
+        </div>
+        <a class="login"
+            ng-if="!$root.userIsLoggedIn"
+            ui-sref="root.layout.login">
+            <i class="icons icon-user"></i>
+        </a>
     </div>
 </div>
 <butter-bar></butter-bar>

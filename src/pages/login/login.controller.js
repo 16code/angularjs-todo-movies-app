@@ -9,7 +9,7 @@ class LoginController {
                 .then(() => {
                     this.loginError = {
                         type: 'success',
-                        text: 'You have been successfully logged out!'
+                        text: '你已经成功退出登录!'
                     };
                 });
         } else {
