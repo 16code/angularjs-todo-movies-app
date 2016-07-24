@@ -1,8 +1,8 @@
 const [isLoggedIn, userInfo] = [Symbol(), Symbol()];
 class AccountService {
-    constructor($resource, $rootScope, $q, ErrorHandler, Storage, API) {
+    constructor($resource, $rootScope, $q, ErrorHandler, Storage, Base64, API) {
         'ngInject';
-        Object.assign(this, {$resource, $rootScope, $q, ErrorHandler, Storage, API});
+        Object.assign(this, {$resource, $rootScope, $q, ErrorHandler, Storage, Base64, API});
         this[isLoggedIn] = false;
         this[userInfo] = null;
     }
@@ -67,8 +67,6 @@ class AccountService {
             if (user) {
                 this[isLoggedIn] = true;
             }
-        } else {
-            this.__clearUser();
         }
         return this[isLoggedIn];
     }
@@ -82,7 +80,8 @@ class AccountService {
         this.Storage.set('user', {
             token: userData.token,
             session: userData.session,
-            username: userData.account.username
+            username: userData.account.username,
+            password: this.Base64.encode(userData.account.password)
         });
     }
     __clearUser() {

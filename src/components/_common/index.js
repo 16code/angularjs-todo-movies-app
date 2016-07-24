@@ -41,7 +41,7 @@ export default angular.module('app.common',
     .service('PersonApi', PersonService)
     .service('AccountApi', AccountService)
     .service('TvApi', TvService)
-    .service('Base64code', Base64Unicode)
+    .service('Base64', Base64Unicode)
     .service('Storage', StorageService)
     .service('ScrollEvent', ScrollEventService)
     .factory('HttpInterceptor', HttpInterceptor)
