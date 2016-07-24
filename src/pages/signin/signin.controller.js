@@ -1,7 +1,7 @@
 class SignInController {
-    constructor(AccountApi) {
+    constructor($timeout, $rootScope, AccountApi) {
         'ngInject';
-        Object.assign(this, {AccountApi});
+        Object.assign(this, {$timeout, $rootScope, AccountApi});
         this.$checkLoggedInStatus();
     }
 
@@ -11,8 +11,11 @@ class SignInController {
         const isLoggedIn = this.AccountApi.$isLoggedIn();
         if (isLoggedIn) {
             const userInfo = this.AccountApi.$getUserInfo();
-            this.userInfo = userInfo;
-            console.log(this.userInfo);
+            this.$timeout(() => {
+                this.userInfo = userInfo;
+            }, 3000);
+            console.log(userInfo);
+            console.log(this.$rootScope.prev);
         } else {
             this.hasUserLoginState = false;
         }

@@ -6,8 +6,17 @@
         </div>
         <div class="form-box">
             <div ng-if="form.hasUserLoginState"
-                class="login-checking white-text">
-                <p class="loading-text">{{form.userInfo ? form.userInfo.username : 'Checking Login User...'}}</p>
+                class="login-checking text-white">
+                <div class="loading-text text-center"
+                    ng-if="!form.userInfo">
+                    <img src="../../assets/spinner.svg" width="48" height="48">
+                    <p>Checking User...</p>
+                </div>
+                <div class="loading-text text-center"
+                    ng-if="form.userInfo">
+                    <i class="icons icon-user"></i>
+                    <h4>{{form.userInfo.username}}</h4>
+                </div>
             </div>
             <form class="login-form"
                 name="form.loginForm"
