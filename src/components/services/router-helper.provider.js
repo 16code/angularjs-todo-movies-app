@@ -98,7 +98,7 @@ class RouterHelper {
             this.$rootScope.title = title;
             this.$rootScope.pageClass = pageClass;
             this.$rootScope.prev = {
-                state: fromState.name,
+                state: fromState.name || 'root.layout.home',
                 params: fromParams
             };
             this.$rootScope.redirectUrl = window.encodeURIComponent(this.$location.absUrl());

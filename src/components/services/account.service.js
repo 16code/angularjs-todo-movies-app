@@ -25,6 +25,12 @@ class AccountService {
             });
         });
     }
+    $logout() {
+        this.__clearUser();
+        return this.$q((resolve) => {
+            resolve(true);
+        });
+    }
     // 请求token
     $requestToken() {
         const api = this.$resource(`${this.API}/authentication/token/new`);

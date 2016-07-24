@@ -3,10 +3,10 @@
 // 2. 拿着 request token 去验证用户状态
 // 3. 那个 request token 去请求 session_id
 // 特别说明 第2步不可绕过
-class SignFormcontroller {
-    constructor($state, AccountApi) {
+class LoginFormcontroller {
+    constructor($state, $rootScope, AccountApi) {
         'ngInject';
-        Object.assign(this, {$state, AccountApi});
+        Object.assign(this, {$state, $rootScope, AccountApi});
     }
     login(account) {
         // 表单是否验证通过
@@ -14,8 +14,9 @@ class SignFormcontroller {
         this.loginError = null;
         this.isAjaxRequest = true;
         this.AccountApi.$login(account)
-            .then((resp) => {
-                console.log(resp);
+            .then(() => {
+                this.$state.go(this.$rootScope.prev.state, this.$rootScope.prev.params);
+                this.$rootScope.prev = null;
             }, (err) => this.__error(err));
     }
     __error(reason) {
@@ -30,4 +31,4 @@ class SignFormcontroller {
         };
     }
 }
-export default SignFormcontroller;
+export default LoginFormcontroller;

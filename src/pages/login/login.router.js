@@ -1,4 +1,4 @@
-function appSignInRun(RouterHelper) {
+function appLoginRun(RouterHelper) {
     'ngInject';
     RouterHelper.configureStates(getStates());
 }
@@ -6,24 +6,24 @@ function appSignInRun(RouterHelper) {
 function getStates() {
     return [
         {
-            state: 'root.layout.signin',
+            state: 'root.layout.login',
             config: {
-                url: '/signin',
+                url: '/login?action',
                 views: {
                     '@': {
                         templateProvider: ['$q', ($q) => {
                             return $q((resolve) => {
                                 require.ensure([], () => {
-                                    resolve(require('./signin.html'));
-                                }, 'signin');
+                                    resolve(require('./login.html'));
+                                }, 'login');
                             });
                         }],
-                        controller: 'SignInController as vm'
+                        controller: 'LoginController as vm'
                     },
                 },
                 data: {
                     title: '登录',
-                    className: 'signin'
+                    className: 'login'
                 },
                 resolve: {
                     loadModule: ['$q', '$ocLazyLoad', ($q, $ocLazyLoad) => {
@@ -31,15 +31,14 @@ function getStates() {
                             require.ensure([], () => {
                                 $ocLazyLoad.load({name: require('./index').default});
                                 resolve();
-                            }, 'signin');
+                            }, 'login');
                         });
-                    }],
-                    data: () => ({12331: 'adada'})
+                    }]
                 }
             }
         }
     ];
 }
 
-export default angular.module('app.routes.signin', [])
-    .run(appSignInRun);
+export default angular.module('app.routes.login', [])
+    .run(appLoginRun);

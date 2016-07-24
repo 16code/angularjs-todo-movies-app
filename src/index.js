@@ -23,7 +23,7 @@ import billboardRouter from './pages/billboard/billboard.router';
 import moviesProfileRouter from './pages/movie-profile/movie-profile.router';
 import personProfileRouter from './pages/person-profile/person-profile.router';
 
-import signInRouter from './pages/signin/signin.router';
+import loginRouter from './pages/login/login.router';
 
 import notfoundRouter from './pages/404/404.router';
 // 模块
@@ -42,7 +42,7 @@ const modules = [
     billboardRouter.name,
     moviesProfileRouter.name,
     personProfileRouter.name,
-    signInRouter.name,
+    loginRouter.name,
     notfoundRouter.name
 ];
 
