@@ -3,6 +3,7 @@ class LoginController {
         'ngInject';
         Object.assign(this, {$state, $timeout, $rootScope, AccountApi});
         const action = this.$state.params.action;
+        this.redirectUri = this.$state.params.redirect || null;
         if (action === 'logout') {
             this.hasUserLoginState = false;
             this.AccountApi.$logout()

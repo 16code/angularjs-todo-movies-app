@@ -49,7 +49,6 @@ class RouterHelper {
             if (this[handlingStateChangeError]) {
                 return;
             }
-            this.$rootScope.redirectUrl = window.encodeURIComponent(this.$location.absUrl());
             this[stateCounts].errors++;
             this[handlingStateChangeError] = true;
             const destination = (toState &&
@@ -58,10 +57,16 @@ class RouterHelper {
             const errorMessage = (error && error.message) || error;
             const msg = `Error routing to ${destination}.\nReason: ${errorMessage}.`;
             console.warn(msg);
+            this.$rootScope.redirectUrl = window.encodeURIComponent(
+                this.$state.href(toState.name, toParams, {absolute: true}));
             // 错误路由具体处理
             switch (error) {
                 case 'requireLogin':
-                    this.$state.go('root.layout.login');
+                    this.$state.prev = {state: toState.name, params: toParams};
+                    this.$state.go('root.layout.login', {
+                        locale: toParams.locale,
+                        redirect: this.$rootScope.redirectUrl
+                    }, {reload: true});
                     break;
                 default:
                     this.$state.go('root.layout.home');
@@ -77,7 +82,6 @@ class RouterHelper {
                     toState.redirectTo.params || {}, {absolute: true});
                 window.location.href = redirectToUri;
             }
-            // this.$anchorScroll();
         });
     }
     getStates() {

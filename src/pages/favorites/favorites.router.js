@@ -1,4 +1,4 @@
-function appLoginRun(RouterHelper) {
+function appFavoritesRun(RouterHelper) {
     'ngInject';
     RouterHelper.configureStates(getStates());
 }
@@ -6,24 +6,24 @@ function appLoginRun(RouterHelper) {
 function getStates() {
     return [
         {
-            state: 'root.layout.login',
+            state: 'root.layout.account.favorites',
             config: {
-                url: '/login?action&redirect',
+                url: '/favorites',
                 views: {
-                    '@': {
+                    'main@root': {
                         templateProvider: ['$q', ($q) => {
                             return $q((resolve) => {
                                 require.ensure([], () => {
-                                    resolve(require('./login.html'));
-                                }, 'login');
+                                    resolve(require('./favorites.html'));
+                                }, 'favorites');
                             });
                         }],
-                        controller: 'LoginController as vm'
-                    },
+                        // controller: 'BillboardController as vm'
+                    }
                 },
                 data: {
-                    title: '登录',
-                    className: 'login'
+                    title: '收藏夹',
+                    className: 'favorites'
                 },
                 resolve: {
                     loadModule: ['$q', '$ocLazyLoad', ($q, $ocLazyLoad) => {
@@ -31,7 +31,7 @@ function getStates() {
                             require.ensure([], () => {
                                 $ocLazyLoad.load({name: require('./index').default});
                                 resolve();
-                            }, 'login');
+                            }, 'favorites');
                         });
                     }]
                 }
@@ -40,5 +40,5 @@ function getStates() {
     ];
 }
 
-export default angular.module('app.routes.login', [])
-    .run(appLoginRun);
+export default angular.module('app.routes.favorites', [])
+    .run(appFavoritesRun);

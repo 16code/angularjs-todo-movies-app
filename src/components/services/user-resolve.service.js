@@ -1,12 +1,11 @@
 class ResolveService {
-    login($q) {
+    login($q, AccountApi) {
         'ngInject';
-        return error;
-
-        function error() {
+        const isLoggedIn = AccountApi.$isLoggedIn();
+        if (!isLoggedIn) {
             return $q.reject('requireLogin');
         }
+        return true;
     }
 }
-
 export default ResolveService;

@@ -26,6 +26,10 @@ import personProfileRouter from './pages/person-profile/person-profile.router';
 import loginRouter from './pages/login/login.router';
 
 import notfoundRouter from './pages/404/404.router';
+
+// 用户中心
+import favoritesRouter from './pages/favorites/favorites.router';
+
 // 模块
 const modules = [
     uiRouter,
@@ -43,7 +47,8 @@ const modules = [
     moviesProfileRouter.name,
     personProfileRouter.name,
     loginRouter.name,
-    notfoundRouter.name
+    notfoundRouter.name,
+    favoritesRouter.name
 ];
 
 // global __APP_NAME__:true

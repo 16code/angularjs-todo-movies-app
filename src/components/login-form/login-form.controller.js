@@ -8,6 +8,7 @@ class LoginFormcontroller {
     constructor($state, $rootScope, $timeout, AccountApi) {
         'ngInject';
         Object.assign(this, {$state, $rootScope, $timeout, AccountApi});
+        this.__clearMsg();
     }
     login(account) {
         // 表单是否验证通过
@@ -18,14 +19,17 @@ class LoginFormcontroller {
             .then(() => {
                 this.__setErrorMessage('success', '登录成功，正在重定向到登录前的页面!');
                 this.$timeout(() => {
-                    const uri = this.$state.href(this.$rootScope.prev.state, this.$rootScope.prev.params);
-                    this.$rootScope.prev = null;
-                    window.location.href = uri;
+                    if (this.redirectUri) {
+                        window.location.href = decodeURIComponent(this.redirectUri);
+                    } else {
+                        const uri = this.$state.href(this.$rootScope.prev.state, this.$rootScope.prev.params);
+                        this.$rootScope.prev = null;
+                        window.location.href = uri;
+                    }
                 }, 2000);
             }, (err) => this.__error(err));
     }
     __error(reason) {
-        console.log(reason);
         this.__setErrorMessage('error', reason.data.status_message);
         this.isAjaxRequest = false;
     }
@@ -34,6 +38,12 @@ class LoginFormcontroller {
             type,
             text
         };
+        this.__clearMsg();
+    }
+    __clearMsg() {
+        this.$timeout(() => {
+            this.loginError = null;
+        }, 3000);
     }
 }
 export default LoginFormcontroller;

@@ -34,6 +34,15 @@ function getStates() {
                     }
                 }
             }
+        }, {
+            state: 'root.layout.account',
+            config: {
+                url: '/user',
+                abstract: true,
+                data: {
+                    requireLogin: true
+                }
+            }
         }
     ];
 }

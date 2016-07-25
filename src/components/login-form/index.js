@@ -5,7 +5,8 @@ const loginFormComponent = {
     bindings: {
         hasUserLoginState: '<',
         userInfo: '<',
-        loginError: '<'
+        loginError: '<',
+        redirectUri: '<'
     },
     template: loginFormHTML,
     controller: LoginFormcontroller,

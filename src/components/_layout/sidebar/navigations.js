@@ -57,7 +57,7 @@ export default [
     {
         name: '收藏夹',
         icon: 'star',
-        uri: 'root.layout.notfound'
+        uri: 'root.layout.account.favorites'
     },
     {
         name: '设置',
