@@ -5,7 +5,7 @@
         .poster-box,
         .backdrop {
             position: relative;
-            color: #fff;
+            color: #e5e5e5;
         }
         .backdrop {
             height: 520px;
@@ -53,6 +53,7 @@
                 padding-right: 1rem;
             }
             .title {
+                color: #fff;
                 margin-bottom: 1rem;
                 text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
                 white-space: nowrap;
@@ -67,6 +68,25 @@
                 max-height:200px;
                 padding-bottom: 3rem;
                 overflow: auto;
+            }
+        }
+        .handle {
+            margin-bottom: 1.5rem;
+            .btn {
+                border-radius: 4px;
+                background-color: transparent;
+                border-width: 2px;
+                color: #e5e5e5;
+                margin-right: 1rem;
+                &:hover,
+                &.true {
+                    color: #eec141;
+                }
+            }
+            .icons {
+                font-size: 1.8rem;
+                vertical-align: text-top;
+                padding-right: .5rem;
             }
         }
     }

@@ -10,9 +10,10 @@ export default function appRun($rootScope, $state, AccountApi, IMAGE_URI) {
     if (userIsLoggedIn) {
         const userData = AccountApi.$getUserInfo();
         if (userData) {
-            const {id, username} = userData.user;
-            $rootScope.user = {id, username};
+            const {user: {id, username, name}, session, token} = userData;
+            $rootScope.user = {id, username, name, session, token};
             $rootScope.user.avatar = userData.user.avatar.gravatar.hash;
+            $rootScope.user.session = userData.session;
             $rootScope.userIsLoggedIn = userIsLoggedIn;
         }
     }

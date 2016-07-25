@@ -12,11 +12,28 @@
                 <div class="overview">
                     <div class="info">
                         <h3 class="title">{{vm.movie.title}} ({{vm.movie.original_title}})</h3>
+                        <div class="handle">
+                            <button type="button" class="btn favorite"
+                                ng-click="vm.favoriteHandle(vm.movie.id);"
+                                ng-class="{'true': vm.isFavorite.favorite}">
+                                <i class="icons icon-heart"></i>
+                                <span ng-if="vm.isFavorite.favorite">取消收藏</span>
+                                <span ng-if="!vm.isFavorite.favorite">收藏</span>
+                            </button>
+                            <button type="button" class="btn watch">
+                                <i class="icons icon-eye"></i>
+                                <span>添加到观看列表</span>
+                            </button>
+                            <button type="button" class="btn rate">
+                                <i class="icons icon-star"></i>
+                                <span>评分</span>
+                            </button>
+                        </div>
                         <p>
                             <span class="label">评分:</span>
                             <span>{{vm.movie.vote_average}} </span>
                         </p>
-                        <p>
+                        <p ng-if="vm.movie.runtime">
                             <span class="label">时长:</span>
                             <span>{{vm.movie.runtime}} 分钟</span>
                         </p>

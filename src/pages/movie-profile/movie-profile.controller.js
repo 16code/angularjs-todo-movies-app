@@ -1,8 +1,17 @@
 const [timer, backdropsIsLoaded, ScrollHandler] = [Symbol(), Symbol(), Symbol()];
 class MovieProfileController {
-    constructor($document, $timeout, movieProfile, RouterHelper, ScrollEvent, MoviesApi) {
+    constructor($rootScope, $document, $timeout, movieProfile, RouterHelper, ScrollEvent, MoviesApi, FavoriteApi) {
         'ngInject';
-        Object.assign(this, {$document, $timeout, movieProfile, RouterHelper, ScrollEvent, MoviesApi});
+        Object.assign(this, {
+            $rootScope,
+            $document,
+            $timeout,
+            movieProfile,
+            RouterHelper,
+            ScrollEvent,
+            MoviesApi,
+            FavoriteApi
+        });
         this[ScrollHandler] = this.ScrollEvent.$offsetTop.bind(this.ScrollEvent);
         this.movie = this.movieProfile.profile;
         this.credits = this.movieProfile.credits;
@@ -16,6 +25,19 @@ class MovieProfileController {
     activate() {
         this.getMovieKeyWords();
         this.scrollEvent();
+        if (this.$rootScope.user.session) {
+            this.validateFavoriteState();
+        }
+    }
+    validateFavoriteState() {
+        const query = {
+            session_id: this.$rootScope.user.session,
+            id: this.movie.id
+        };
+        this.FavoriteApi.$favoriteState(query)
+            .then((resp) => {
+                this.isFavorite = resp;
+            });
     }
     getMovieKeyWords() {
         this.MoviesApi.$profile({id: this.movie.id, type: 'keywords'})
@@ -54,6 +76,19 @@ class MovieProfileController {
                 console.log(err);
                 this[backdropsIsLoaded] = false;
                 this.posters.$resolved = true;
+            });
+    }
+    // 添加收藏 && 取消收藏
+    favoriteHandle(id) {
+        const params = {
+            session: this.$rootScope.user.session,
+            media_type: 'movie',
+            media_id: id,
+            favorite: !this.isFavorite.favorite
+        };
+        this.FavoriteApi.$favorite(params)
+            .then(() => {
+                this.isFavorite.favorite = !this.isFavorite.favorite;
             });
     }
 }

@@ -18,7 +18,7 @@ function getStates() {
                                 }, 'favorites');
                             });
                         }],
-                        // controller: 'BillboardController as vm'
+                        controller: 'FavoritesController as vm'
                     }
                 },
                 data: {

@@ -1,0 +1,27 @@
+<div class="page-title">
+    <h4>收藏夹</h4>
+    <p><small class="text-muted">Get the list of favorite movies or tv for an account.</small></p>
+</div>
+<div class="root-wrapper">
+    <div class="favorite-wrapper" id="favorite-wrapper">
+        <div class="movie" ng-repeat="movie in vm.movies track by $index">
+            <a class="thumbnail lazyimg"
+                ui-sref="root.layout.movies.movieProfile({id: movie.id, name: movie.original_title})">
+                <img imgload="{{$root.image_uri}}/w342{{movie.poster_path}}">
+            </a>
+            <div class="meta">
+                <div class="left">
+                    <h5 class="name">
+                        <a ui-sref="root.layout.movies.movieProfile({id: movie.id, name: movie.original_title})">{{movie.title}}</a>
+                    </h5>
+                    <p class="genre">{{vm.genre(movie.genre_ids)}}</p>
+                </div>
+                <p class="star">
+                    <i class="icons icon-star"></i>
+                    <span class="number">{{vm.vote(movie.vote_average)}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <loading-bar></loading-bar>
+</div>
