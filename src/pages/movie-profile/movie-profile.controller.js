@@ -1,6 +1,6 @@
-const [timer, backdropsIsLoaded, ScrollHandler] = [Symbol(), Symbol(), Symbol()];
+const [timer, backdropsIsLoaded] = [Symbol(), Symbol()];
 class MovieProfileController {
-    constructor($rootScope, $document, $timeout, movieProfile, RouterHelper, ScrollEvent, MoviesApi, FavoriteApi) {
+    constructor($rootScope, $document, $timeout, movieProfile, RouterHelper, MoviesApi, FavoriteApi) {
         'ngInject';
         Object.assign(this, {
             $rootScope,
@@ -8,11 +8,9 @@ class MovieProfileController {
             $timeout,
             movieProfile,
             RouterHelper,
-            ScrollEvent,
             MoviesApi,
             FavoriteApi
         });
-        this[ScrollHandler] = this.ScrollEvent.$offsetTop.bind(this.ScrollEvent);
         this.movie = this.movieProfile.profile;
         this.credits = this.movieProfile.credits;
         this[backdropsIsLoaded] = false;
@@ -24,7 +22,6 @@ class MovieProfileController {
     }
     activate() {
         this.getMovieKeyWords();
-        this.scrollEvent();
         if (this.$rootScope.userIsLoggedIn && this.$rootScope.user.session) {
             this.validateFavoriteState();
         }
@@ -44,24 +41,11 @@ class MovieProfileController {
             .then((resp) => {
                 this.tags = resp.keywords;
                 this.tags.$resolved = resp.$resolved;
+                this.loadImages();
             }, (err) => {
                 console.log(err);
                 this.tags.$resolved = true;
             });
-    }
-    scrollEvent() {
-        if (!this.scrollFunc) {
-            this.scrollFunc = () => {
-                if (this[timer]) this.$timeout.cancel(this[timer]);
-                this[timer] = this.$timeout(() => {
-                    const loadingCondition = this[ScrollHandler]();
-                    if (loadingCondition < 30 && !this[backdropsIsLoaded]) {
-                        this.loadImages();
-                    }
-                }, 1000);
-            };
-        }
-        angular.element(this.$document[0]).bind('scroll', this.scrollFunc);
     }
     // 加载海报和剧照
     loadImages() {
