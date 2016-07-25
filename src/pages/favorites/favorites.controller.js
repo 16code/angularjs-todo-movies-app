@@ -14,7 +14,6 @@ class FavoritesController {
         this.FavoriteApi.$list(queryData)
             .then((resp) => {
                 this.movies = resp.results;
-                console.log(resp);
             });
     }
     genre(ids) {

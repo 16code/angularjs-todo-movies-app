@@ -3,6 +3,7 @@
     justify-content: flex-start;
     margin-left: -1rem;
     margin-right: -1rem;
+    flex-wrap: wrap;
     .movie {
         width: 200px;
         display: flex;
@@ -10,6 +11,9 @@
         border-radius: 2px;
         overflow: hidden;
         margin:0 1rem 1rem;
+        @media screen and (max-width: 980px) {
+            width: 171px;
+        }
         .thumbnail {
             display: block;
             width: 100%;
@@ -19,6 +23,9 @@
             box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
             backface-visibility: hidden;
             transition: all .3s linear;
+            @media screen and (max-width: 980px) {
+                height: 265px;
+            }
             &:hover {
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
             }

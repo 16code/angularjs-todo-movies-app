@@ -22,10 +22,6 @@ class ErrorHandlerService {
             }
         }
         data.code = data.code.toUpperCase();
-        console.log({
-            data,
-            msg: this.ErrorMessage.getErrorMessage(data)
-        });
         if (reason.data && reason.data.status_message) {
             data.serviceMsg = reason.data.status_message;
         }
