@@ -25,7 +25,7 @@ class MovieProfileController {
     activate() {
         this.getMovieKeyWords();
         this.scrollEvent();
-        if (this.$rootScope.user.session) {
+        if (this.$rootScope.userIsLoggedIn && this.$rootScope.user.session) {
             this.validateFavoriteState();
         }
     }

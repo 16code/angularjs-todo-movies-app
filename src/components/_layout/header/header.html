@@ -32,7 +32,7 @@
     <div class="account">
         <div class="user"
             ng-if="$root.userIsLoggedIn">
-            <a href="#">
+            <a ui-sref="root.layout.account.favorites">
                 <span class="name">{{$root.user.name || $root.user.username}}</span>
                 <img class="avatar" ng-src="//secure.gravatar.com/avatar/{{$root.user.avatar}}.jpg?s=80" /></a>
             <a class="logout"
