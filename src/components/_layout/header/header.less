@@ -34,46 +34,23 @@
     align-items: center;
 }
 .account {
-    .login,
-    .logout,
-    .avatar {
+    a {
+        display: inline-block;
         color: inherit;
         text-align: center;
         outline: 0;
-    }
-    .user {
-        position: relative;
-        &:hover {
-            .logout {
-                display: block;
-            }
-        }
-    }
-    .logout {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        border-radius: 2px;
-        border: 1px solid rgba(0,0,0,0.1);
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        background-color: #fff;
-        z-index: 9;
-        padding: 1rem 1rem;
-        font-size: 1.2rem;
-        display: none;
-    }
-    .name {
-        display: inline-block;
         vertical-align: middle;
-        margin-right: .5rem;
     }
     .avatar {
+        margin-top: -2px;
         background-color: #ddd;
         border-radius: 50%;
         width: 30px;
         height: 30px;
         line-height: 30px;
         display: inline-block;
+        margin-left: .5em;
+        margin-right: .5em;
     }
 }
 .navbar-nav {

@@ -32,12 +32,13 @@
     <div class="account">
         <div class="user"
             ng-if="$root.userIsLoggedIn">
-            <a href="#" title="个人中心">
+            <a href="#">
                 <span class="name">{{$root.user.username}}</span>
                 <img class="avatar" ng-src="//secure.gravatar.com/avatar/{{$root.user.avatar}}.jpg?s=32" /></a>
             <a class="logout"
-                title="logout"
-                ui-sref="root.layout.login({action: 'logout'})">退出登录</a>
+                ui-sref="root.layout.login({action: 'logout'})">
+                <i class="icons icon-logout"></i>
+            </a>
         </div>
         <a class="login"
             ng-if="!$root.userIsLoggedIn"

@@ -7,6 +7,8 @@ class LoginController {
             this.hasUserLoginState = false;
             this.AccountApi.$logout()
                 .then(() => {
+                    this.$rootScope.userIsLoggedIn = false;
+                    this.$rootScope.user = null;
                     this.loginError = {
                         type: 'success',
                         text: '你已经成功退出登录!'

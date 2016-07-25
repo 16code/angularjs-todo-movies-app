@@ -1,8 +1,8 @@
 const [isLoggedIn, userInfo] = [Symbol(), Symbol()];
 class AccountService {
-    constructor($resource, $rootScope, $q, ErrorHandler, Storage, API) {
+    constructor($resource, $q, ErrorHandler, Storage, API) {
         'ngInject';
-        Object.assign(this, {$resource, $rootScope, $q, ErrorHandler, Storage, API});
+        Object.assign(this, {$resource, $q, ErrorHandler, Storage, API});
         this[isLoggedIn] = false;
         this[userInfo] = null;
     }
