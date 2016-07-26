@@ -35,7 +35,7 @@ const webpackPluginCommonConfig = [
         template: './src/index.ejs',
         chunks: ['app', 'vendor'],
         appName: APP_NAME,
-        title: 'Webpack Angularjs Generator',
+        title: 'Angularjs Todo Movies App',
         devServer: isMock
     }),
     new webpack.ResolverPlugin([
