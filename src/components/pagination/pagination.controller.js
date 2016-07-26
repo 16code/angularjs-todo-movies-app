@@ -22,13 +22,14 @@ class PaginationController {
         }, getPagination);
         const self = this;
         /* eslint complexity: ["error", 14]*/
-        function getPagination(newValue, oldValue) {
+        function getPagination(newValue) {
+            if (!newValue) return;
             // conf.currentPage
             self.config.currentPage = parseInt(self.config.currentPage, 10) || 1;
             // conf.totalItems
             self.config.totalItems = parseInt(self.config.totalItems, 10) || 0;
             // conf.itemsPerPage (default:15)
-            self.config.itemsPerPage = parseInt(self.config.itemsPerPage, 10) || 15;
+            self.config.itemsPerPage = parseInt(self.config.itemsPerPage, 10) || 20;
             // numberOfPages
             self.config.numberOfPages = Math.ceil(self.config.totalItems / self.config.itemsPerPage);
             // 如果分页总数>0，并且当前页大于分页总数
@@ -74,9 +75,6 @@ class PaginationController {
                     self.pageList.push({page: '...'});
                     self.pageList.push(self.parseStateToUri(self.config.numberOfPages));
                 }
-            }
-            if (self.config.pageOnChange && !(oldValue !== newValue && oldValue[0] === 0)) {
-                self.config.pageOnChange();
             }
             watcher();
         }
