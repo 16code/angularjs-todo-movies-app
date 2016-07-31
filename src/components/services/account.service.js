@@ -10,19 +10,22 @@ class AccountService {
         return this.$q((resolve, reject) => {
             const promise = this.$requestToken();
             promise.then((respToken) => respToken)
-            .then((token) => this.$validateLoggedInOnline(token, account))
-            .then((validate) => this.$createSession(validate))
-            .then((session) => this.$userInfo(session))
-            .then((data) => {
-                // 返回用户token session 和账户信息
-                const userData = {token: data.requestData.token, session: data.requestData.session, user: data.user};
-                this.__setUser(userData);
-                resolve(userData);
-            })
-            .catch((reason) => {
-                this.__clearUser();
-                reject(reason);
-            });
+                .then((token) => this.$validateLoggedInOnline(token, account))
+                .then((validate) => this.$createSession(validate))
+                .then((session) => this.$userInfo(session))
+                .then((data) => {
+                    // 返回用户token session 和账户信息
+                    const userData = {
+                        token: data.requestData.token,
+                        session: data.requestData.session,
+                        user: data.user};
+                    this.__setUser(userData);
+                    resolve(userData);
+                })
+                .catch((reason) => {
+                    this.__clearUser();
+                    reject(reason);
+                });
         });
     }
     $logout() {

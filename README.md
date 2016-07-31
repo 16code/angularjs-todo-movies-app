@@ -4,8 +4,8 @@
 ## 安装安装
 
 ```bash
-git clone https://16code@bitbucket.org/16code/todo-movies-app.git myAngularApp
-cd myAngularApp
+git clone https://16code@bitbucket.org/16code/todo-movies-app.git
+cd todo-movies-app
 npm install -g webpack eslint
 npm install
 ```

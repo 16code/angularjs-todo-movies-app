@@ -13,7 +13,7 @@ class TvSource {
         return this.$q((resolve) => {
             const promise = api.get(tpye).$promise;
             promise.then((resp) => resolve(resp))
-            .catch(this[errorHandler]);
+                .catch(this[errorHandler]);
         });
     }
 }
