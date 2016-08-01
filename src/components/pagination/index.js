@@ -3,7 +3,7 @@ import './pagination.less';
 import PaginationController from './pagination.controller';
 const PagingComponent = {
     bindings: {
-        config: '='
+        config: '<'
     },
     template: paginationHtml,
     controller: PaginationController,

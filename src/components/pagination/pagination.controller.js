@@ -10,20 +10,18 @@ class PaginationController {
         // 定义分页的长度必须为奇数 (default:9)
         this.configUri = this.config.state;
         this.config.pagesLength = Number(this.config.pagesLength) || 9;
+        this.$onChanges = (changesObj) => {
+            if (changesObj.config && changesObj.config.currentValue) {
+                getPagination();
+            }
+        };
         if (this.config.pagesLength % 2 === 0) {
             // 如果不是奇数的时候处理一下
             this.config.pagesLength = this.config.pagesLength - 1;
         }
-        const watcher = this.$scope.$watch(() => {
-            this.config.totalItems = this.config.totalItems || 0;
-            const newValue =
-                `${this.config.totalItems} ${this.config.currentPage} ${this.config.itemsPerPage}`;
-            return newValue;
-        }, getPagination);
         const self = this;
         /* eslint complexity: ["error", 14]*/
-        function getPagination(newValue) {
-            if (!newValue) return;
+        function getPagination() {
             // conf.currentPage
             self.config.currentPage = parseInt(self.config.currentPage, 10) || 1;
             // conf.totalItems
@@ -76,7 +74,6 @@ class PaginationController {
                     self.pageList.push(self.parseStateToUri(self.config.numberOfPages));
                 }
             }
-            watcher();
         }
     }
     parseStateToUri(number) {
