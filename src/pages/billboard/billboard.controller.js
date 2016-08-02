@@ -1,27 +1,27 @@
 const [timer, ajaxBusy, currentPage, ScrollHandler] = [Symbol(), Symbol(), Symbol(), Symbol()];
 class BillboardController {
-    constructor($document, $timeout, $rootScope, MoviesApi, ScrollEvent) {
+    constructor($scope, $document, $timeout, MoviesApi, ScrollEvent) {
         'ngInject';
-        Object.assign(this, {$document, $timeout, $rootScope, MoviesApi, ScrollEvent});
+        Object.assign(this, {$scope, $document, $timeout, MoviesApi, ScrollEvent});
         this[ScrollHandler] = this.ScrollEvent.$offsetTop.bind(this.ScrollEvent);
         this.movies = [];
         this[currentPage] = false;
         this[ajaxBusy] = false;
         this[timer] = false;
-        this.description = `Get the list of top rated movies. By default, 
+        this.description = `Get the list of top rated movies. By default,
             this list will only include movies that have 50 or more votes. This list refreshes every day.`;
         this.activate();
     }
     activate() {
         // 获取电影列表数据
-        this.$rootScope.$on('$stateChangeSuccess', () => {
-            angular.element(this.$document[0]).unbind('scroll');
-            this[ajaxBusy] = false;
-        });
         this.$getMovies();
         this.scrollEvent();
     }
     scrollEvent() {
+        this.$scope.$on('$destroy', () => {
+            angular.element(this.$document[0]).unbind('scroll');
+            this[ajaxBusy] = false;
+        });
         angular.element(this.$document[0]).bind('scroll', () => {
             if (this[timer]) this.$timeout.cancel(this[timer]);
             this[timer] = this.$timeout(() => {
