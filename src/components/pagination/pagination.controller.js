@@ -7,19 +7,22 @@ class PaginationController {
             $attrs,
             $state
         });
+    }
+    $onInit = () => {
         // 定义分页的长度必须为奇数 (default:9)
         this.configUri = this.config.state;
         this.config.pagesLength = Number(this.config.pagesLength) || 9;
-        this.$onChanges = (changesObj) => {
-            if (changesObj.config && changesObj.config.currentValue) {
-                this.getPagination();
-            }
-        };
         if (this.config.pagesLength % 2 === 0) {
             // 如果不是奇数的时候处理一下
             this.config.pagesLength = this.config.pagesLength - 1;
         }
+        this.getPagination();
     }
+    $onChanges = (changesObj) => {
+        if (!changesObj.config.isFirstChange()) {
+            this.getPagination();
+        }
+    };
     getPagination() {
         /* eslint complexity: ["error", 14]*/
         const self = this;
