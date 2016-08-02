@@ -26,6 +26,7 @@ class PaginationController {
     getPagination() {
         /* eslint complexity: ["error", 14]*/
         const self = this;
+        const dotsObj = {page: '...'};
         // conf.currentPage
         self.config.currentPage = parseInt(self.config.currentPage, 10) || 1;
         // conf.totalItems
@@ -54,11 +55,11 @@ class PaginationController {
                 for (let i = 1; i <= offset + 1; i++) {
                     self.pageList.push(self.parseStateToUri(i));
                 }
-                self.pageList.push({page: '...'});
+                self.pageList.push(dotsObj);
                 self.pageList.push(self.parseStateToUri(self.config.numberOfPages));
             } else if (self.config.currentPage > self.config.numberOfPages - offset) {
                 self.pageList.push(self.parseStateToUri(1));
-                self.pageList.push({page: '...'});
+                self.pageList.push(dotsObj);
                 for (let i = offset + 1; i >= 1; i--) {
                     self.pageList.push(self.parseStateToUri(self.config.numberOfPages - i));
                 }
@@ -66,7 +67,7 @@ class PaginationController {
             } else {
                 // 最后一种情况，两边都有...
                 self.pageList.push(self.parseStateToUri(1));
-                self.pageList.push({page: '...'});
+                self.pageList.push(dotsObj);
                 for (let i = Math.ceil(offset / 2); i >= 1; i--) {
                     self.pageList.push(self.parseStateToUri(self.config.currentPage - i));
                 }
@@ -74,7 +75,7 @@ class PaginationController {
                 for (let i = 1; i <= offset / 2; i++) {
                     self.pageList.push(self.parseStateToUri(self.config.currentPage + i));
                 }
-                self.pageList.push({page: '...'});
+                self.pageList.push(dotsObj);
                 self.pageList.push(self.parseStateToUri(self.config.numberOfPages));
             }
         }
