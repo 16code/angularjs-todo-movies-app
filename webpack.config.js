@@ -36,7 +36,8 @@ const webpackPluginCommonConfig = [
         chunks: ['app', 'vendor'],
         appName: APP_NAME,
         title: 'Angularjs Todo Movies App',
-        devServer: isMock
+        devServer: isMock,
+        isProduct
     }),
     new webpack.ResolverPlugin([
         new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('package.json', ['main'])
