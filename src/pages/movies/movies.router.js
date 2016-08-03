@@ -17,7 +17,7 @@ function getStates() {
                 },
                 resolve: {
                     loadModule: ['$q', '$ocLazyLoad', ($q, $ocLazyLoad) => {
-                        return $q((resolve) => {
+                        return $q(resolve => {
                             require.ensure([], () => {
                                 $ocLazyLoad.load({name: require('./index').default});
                                 resolve();
@@ -38,7 +38,7 @@ function getStates() {
                 views: {
                     'main@root': {
                         templateProvider: ['$q', ($q) => {
-                            return $q((resolve) => {
+                            return $q(resolve => {
                                 require.ensure([], () => {
                                     resolve(require('./movies.html'));
                                 }, 'movies');
@@ -60,7 +60,7 @@ function getStates() {
                 views: {
                     'main@root': {
                         templateProvider: ['$q', ($q) => {
-                            return $q((resolve) => {
+                            return $q(resolve => {
                                 require.ensure([], () => {
                                     resolve(require('./movies.html'));
                                 }, 'movies');
@@ -82,7 +82,7 @@ function getStates() {
                 views: {
                     'main@root': {
                         templateProvider: ['$q', ($q) => {
-                            return $q((resolve) => {
+                            return $q(resolve => {
                                 require.ensure([], () => {
                                     resolve(require('./movies.html'));
                                 }, 'movies');
