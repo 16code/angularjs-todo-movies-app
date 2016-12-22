@@ -1,7 +1,11 @@
 # Angular Todo Movies App
 > Webpack + Angularjs + uiRouter + ES6
 
-## 安装安装
+## 演示
+
+[https://16code.github.io/movies-app-demo/](https://16code.github.io/movies-app-demo/)
+
+## 安装
 
 ```bash
 git clone https://github.com/16code/angularjs-todo-movies-app.git
