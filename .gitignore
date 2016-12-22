@@ -8,7 +8,6 @@
 .bowerrc
 /bower_components
 /node_modules
-/dist
 # Thumbnails
 ._*
 .font-spider
