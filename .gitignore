@@ -16,3 +16,4 @@
 .eslintcache
 /eslint
 .eslintrc
+*.map
