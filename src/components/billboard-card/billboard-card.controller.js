@@ -1,6 +1,5 @@
 class BillboardCardController {
-    constructor() {
-        'ngInject';
+    $onInit() {
         this.rank = Number(this.index);
     }
 }
