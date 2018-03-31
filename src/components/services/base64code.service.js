@@ -48,7 +48,7 @@ class Base64Unicode {
         let enc3;
         let enc4;
         let i = 0;
-        str = str.replace(/[^A-Za-z0-9\+/=]/g, '');
+        str = str.replace(/[^A-Za-z0-9+/=]/g, '');
         while (i < str.length) {
             enc1 = this._keyStr.indexOf(str.charAt(i++));
             enc2 = this._keyStr.indexOf(str.charAt(i++));

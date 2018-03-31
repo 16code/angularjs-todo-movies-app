@@ -1,8 +1,11 @@
 class MovieCardController {
     constructor($filter) {
         'ngInject';
-        this.genre = $filter('parseGenre')(this.movie.genre_ids);
-        this.vote = $filter('voteFilter')(this.movie.vote_average);
+        this.$filter = $filter;
+    }
+    $onInit() {
+        this.genre = this.$filter('parseGenre')(this.movie.genre_ids);
+        this.vote = this.$filter('voteFilter')(this.movie.vote_average);
     }
 }
 

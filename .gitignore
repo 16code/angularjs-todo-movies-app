@@ -15,5 +15,6 @@
 .vscode
 .eslintcache
 /eslint
+/dist/*
 .eslintrc
 *.map

@@ -8,7 +8,7 @@ class TagController {
             pagesLength: 9,
             state: $state.current.name
         };
-        this.title = ($stateParams.name).replace(/\-/, ' ');
+        this.title = ($stateParams.name).replace(/-/, ' ');
         this.description = 'Get the basic information for a specific keyword id.';
         this.RouterHelper.updateDocTitle(`与${this.title}相关的电影`);
         this.activate();
