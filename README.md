@@ -3,7 +3,7 @@
 
 ## 演示
 
-[https://16code.github.io/movies-app-demo/](https://16code.github.io/movies-app-demo/)
+[http://movie.ihtml.site](http://movie.ihtml.site)
 
 ## 安装
 
